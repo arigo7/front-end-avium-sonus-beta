@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		607AE28A26BDBC9D00DB37EA /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607AE28926BDBC9D00DB37EA /* AudioPlayer.swift */; };
 		607EE4BB26BCB6EC0041930B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607EE4BA26BCB6EC0041930B /* AppDelegate.swift */; };
 		607EE4BD26BCB6EC0041930B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607EE4BC26BCB6EC0041930B /* SceneDelegate.swift */; };
 		607EE4BF26BCB6EC0041930B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607EE4BE26BCB6EC0041930B /* ContentView.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		607AE28926BDBC9D00DB37EA /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		607EE4B726BCB6EC0041930B /* AudioRecBetaUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioRecBetaUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607EE4BA26BCB6EC0041930B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		607EE4BC26BCB6EC0041930B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				607EE4D226BD0B490041930B /* Extensions.swift */,
 				607EE4D426BD1E790041930B /* RecordingDataModel.swift */,
 				607EE4D626BD222D0041930B /* Helper.swift */,
+				607AE28926BDBC9D00DB37EA /* AudioPlayer.swift */,
 			);
 			path = AudioRecBetaUIKit;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 			files = (
 				607EE4D126BCFD230041930B /* RecordingList.swift in Sources */,
 				607EE4D326BD0B490041930B /* Extensions.swift in Sources */,
+				607AE28A26BDBC9D00DB37EA /* AudioPlayer.swift in Sources */,
 				607EE4D526BD1E790041930B /* RecordingDataModel.swift in Sources */,
 				607EE4BB26BCB6EC0041930B /* AppDelegate.swift in Sources */,
 				607EE4BD26BCB6EC0041930B /* SceneDelegate.swift in Sources */,

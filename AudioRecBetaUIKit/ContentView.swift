@@ -15,6 +15,7 @@ struct ContentView: View {
     
     var body: some View {
         // We embed our ContentView in a NavigationView and provide it with a navigation bar.
+        // NAVIGATION!!!!!! 
         NavigationView{
             VStack {
                 // Inserts the RecordingsList into our ContentView above the start/stop button and uses the AudioRecorder instance of the ContentView as the RecordingsList‘s audioRecorder.
