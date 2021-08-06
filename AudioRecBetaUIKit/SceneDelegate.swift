@@ -19,7 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView()
+        //initializing and Audio recorder instance for our previous struct, lso heere as well for the scene function on our scenedelegate.swift ContentView
+        let contentView = ContentView(audioRecorder: AudioRecorder())
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
