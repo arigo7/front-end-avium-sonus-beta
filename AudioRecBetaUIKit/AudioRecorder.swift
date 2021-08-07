@@ -111,15 +111,29 @@ class AudioRecorder: NSObject, ObservableObject {
             let recording = Recording(fileURL: audio, createdAt: getCreationDate(for: audio))
             recordings.append(recording)
             
-            // sort the recordings array by the creation date of its items and
-            // eventually update all observing views, especially RecordingsList
-            recordings.sort(by: { $0.createdAt.compare($1.createdAt) == .orderedAscending})
-            
-            objectWillChange.send(self)
-            
         }
+        // sort the recordings array by the creation date of its items and
+        // eventually update all observing views, especially RecordingsList
+        recordings.sort(by: { $0.createdAt.compare($1.createdAt) == .orderedAscending})
         
-    }
+        objectWillChange.send(self)
+        
+    } // end fetchRecordings func
     
+    func deleteRecording(urlsToDelete: [URL]) {
+        
+        for url in urlsToDelete {
+            print(url)
+            do {
+                try FileManager.default.removeItem(at: url)
+                
+            } catch {
+                print("File couln't be deleted!")
+            }
+        }// end of for loop
+        
+        fetchRecordings()
+        
+    } // end deleteRecording func
     
 } // end of class declaration?

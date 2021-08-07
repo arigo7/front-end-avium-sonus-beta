@@ -23,8 +23,23 @@ struct RecordingList: View {
             ForEach(audioRecorder.recordings, id: \.createdAt) { recording in
                 RecordingRow(audioURL: recording.fileURL)
             }
+            // Finally, apply delete functionality to every RecordingRow in the RecordingList
+            .onDelete(perform: delete)
         }
     }
+    
+    // Edit button implementation of delete function in RecordingsList
+    // OFFSETS argument represents a set of indexes of recording rows that the user has chosen to delete. With these, create array of file paths of tgBy recordings to be deleted
+    func delete(at offsets: IndexSet) {
+        
+        var urlsToDelete = [URL]()
+        for index in offsets {
+            urlsToDelete.append(audioRecorder.recordings[index].fileURL)
+        }
+        // Call deleteRecording function delete function of our RecordingsList
+        audioRecorder.deleteRecording(urlsToDelete: urlsToDelete)
+        
+    } // end function delete
 }
 
 //RecordingsList should display one row per stored recording so we add a RecordingRow view struc RecordingsList struct.
@@ -64,6 +79,8 @@ struct RecordingRow: View {
                         .imageScale(.large)
                 }
             } // end of if and else  statement
+            
+            
         } // end of Hstack
         
         

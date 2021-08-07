@@ -50,6 +50,10 @@ struct ContentView: View {
                 
             }
             .navigationBarTitle("Sound Recorder")
+            // to allow user to delete each recording, add default edit button  the navigation bar of ContentView
+            // button enables the user to select individual RecordingRows from the RecordingList to delete. To do this, the Edit button expects us to implement a delete function. We have to add this function to our RecordingsList.
+            .navigationBarItems(trailing: EditButton())
+//            .navigationBarItems(trailing: )   //// Here I have to implement button to select item and send it over!
             
         } // end of navigationView 
         
