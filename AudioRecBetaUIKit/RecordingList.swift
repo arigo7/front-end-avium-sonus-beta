@@ -45,8 +45,10 @@ struct RecordingRow: View {
            
             if audioPlayer.isPlaying == false {
                 Button(action: {
-                    // "Start playing audio"
-                    print("Play audio")
+//                    // "Start playing audio"
+//                    print("Play audio")
+                    // now call the two functions (startPlayback(audio) and stopPlayback()) from our RecordingRow’s start and stop buttons
+                    self.audioPlayer.startPlayback(audio: self.audioURL)
                 }) {
                     Image(systemName: "play.circle")
                         .imageScale(.large)
@@ -54,8 +56,9 @@ struct RecordingRow: View {
                 // If an audio is currently playing, we need to display a button to stop the playback
             } else {
                 Button(action: {
-                    // "stop playing audio
-                    print("Stop playing")
+//                    // "stop playing audio
+//                    print("Stop playing")
+                    self.audioPlayer.stopPlayback()
                 }) {
                     Image(systemName: "stop.fill")
                         .imageScale(.large)

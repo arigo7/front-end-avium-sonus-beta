@@ -13,7 +13,12 @@ import SwiftUI
 import Combine
 import AVFoundation
 
-class AudioPlayer: ObservableObject {
+
+// Implemented playback function and sound plays on speakers. To make stop button stop displaying although an audio was played to the end, update isPlaying variable accordingly
+
+// implement audioDidFinishPlaying function - which notifies when an audio has finished playing (part of the AVAudioPlayerDelegate protocol) Hint: To adapt this delegate protocol, the AudioRecorder must also adapt the NSObject protocol.
+class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
+    
     //PassthroughObject to notify observing views about changes, especially if an audio is being played or not
     let objectWillChange = PassthroughSubject<AudioPlayer, Never>()
     
@@ -38,24 +43,36 @@ class AudioPlayer: ObservableObject {
         do {
             try playbackSession.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
         } catch {
-            print("Playing on device's spekers failed")
+            print("Playing over device's spekers failed")
         }
         
         // We can start playing the audio with the help of the given file path and inform the observing views about this. If this does not work, we will output a corresponding error.
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: audio)
+            
+            // When audio is played, set the AudioPlayer itself as the delegate of the AVAudioPlayer
+            audioPlayer.delegate = self
             audioPlayer.play()
             isPlaying = true
         } catch {
             print("Oops, playback failed")
         }
-    }
+    } // end of startPlayback
     
     // function in AudioPlayer to stop the playback 
     func stopPlayback() {
         audioPlayer.stop()
         isPlaying = false
+    } // end of stopPlayback
+    
+    // add audioDidFinishPlaying function to AudioPlayer, if audio successfully plays, we set the playing properties value back to false
+    // When app runs now and play a recording, AudioPlayer calls the audioDidFinishPlaying function as its own delegate after the audio has been finished playing. This causes the playing attribute to be false again, which will eventually cause the particular RecordingRow to update itself and display the play button again.
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        if flag {
+            isPlaying = false
+        }
     }
+    
     
     
 } // end of class Audio Player declaration
