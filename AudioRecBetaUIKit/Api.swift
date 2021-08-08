@@ -6,6 +6,7 @@
 //
 
 import Foundation
+// import Combine? 
 
 class Api: ObservableObject {
     // @Published before a property - will update any SwiftUI views that are watching for changes (lets swift know to watch for changes of this variable)
@@ -35,10 +36,7 @@ class Api: ObservableObject {
             }
         //After you create the task, you must start it by calling its resume() method.
         }.resume()
-        
-        
-        
-    }
+    } // end loadData
     
     // THIS GOES ALONG WITH STEP NUMBER 2
     
@@ -60,4 +58,24 @@ class Api: ObservableObject {
         // method that checks if file has changed ( check update method)
        // call load data function = it'll pull whatever it has
 //    }
+    
+    
+//    func uploadData(audioFile: Data, completion:@escaping ([Bird]) -> ()) {
+//        guard let url = URL(string: "http://127.0.0.1:5000/bird") else {
+//            print("Invalid url...")
+//            return
+//        }
+//
+//        // completion handler
+//        URLSession.shared.dataTask(with: url) {data, response, error in
+//            let birds = try! JSONDecoder().decode([Bird].self, from: data!)
+//            print(birds)
+//            DispatchQueue.main.async {
+//                completion(birds)
+//            }
+//        //After you create the task, you must start it by calling its resume() method.
+//        }.resume()
+//    } // end uploadData
+    
+    
 }

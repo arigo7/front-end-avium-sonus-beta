@@ -53,6 +53,18 @@ struct RecordingRow: View {
     
     var body: some View {
         HStack {
+            // Button ANalyze
+                        Button(action: {
+                                // Api call here
+                                print("Analyzing Audio")
+                            print(self.audioURL)
+                            // now call the two functions (startPlayback(audio) and stopPlayback()) from our RecordingRow’s start and stop buttons
+            //                self.audioPlayer.startPlayback(audio: self.audioURL)
+                        }) {
+                            Image(systemName: "sparkles")
+                                .imageScale(.large)
+            //                Text("Sent to Analyze")
+                        }
             // Each row should be assigned to the path of the particular audio file. Within the HStack we then path without the file extension for a Text object which we push to the left side with the help of a Spacer.
             Text("\(audioURL.lastPathComponent)")
             Spacer()
@@ -68,6 +80,13 @@ struct RecordingRow: View {
 //                /*@START_MENU_TOKEN@*/Text("Button")/*@END_MENU_TOKEN@*/
 //            })
 //            .sheet(isPresented: $presentingModal) { ModalView(presentedAsModal: self.$presentingModal) }
+//            Button(action: Api(), label: <#T##() -> _#>)
+            
+//
+            
+            
+            
+            
 //            
             if audioPlayer.isPlaying == false {
                 Button(action: {
