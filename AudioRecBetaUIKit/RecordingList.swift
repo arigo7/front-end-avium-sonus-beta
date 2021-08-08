@@ -49,6 +49,7 @@ struct RecordingRow: View {
     
     // Each RecordingRow needs its own AudioPlayer for the respective audio recording, so here initialize one separate AudioPlayer instance as an ObservedObject for each RecordingRow
     @ObservedObject var audioPlayer = AudioPlayer()
+    // @State var presentingModal = false  -- for presenting flag for presenting modal -
     
     var body: some View {
         HStack {
@@ -58,6 +59,16 @@ struct RecordingRow: View {
             
             //If the audioPlayer is not playing, we want to display a play button that allows the user to listen to the recording
            
+            // THIS IS STEP NUMBER 2 I THINK
+            
+//            // BUTTON ANALYZE
+//            Button(action: {
+//                Api().uploadData(audioFile: Data, completion: <#T##([Bird]) -> ()#>)
+//            }, label: {
+//                /*@START_MENU_TOKEN@*/Text("Button")/*@END_MENU_TOKEN@*/
+//            })
+//            .sheet(isPresented: $presentingModal) { ModalView(presentedAsModal: self.$presentingModal) }
+//            
             if audioPlayer.isPlaying == false {
                 Button(action: {
 //                    // "Start playing audio"

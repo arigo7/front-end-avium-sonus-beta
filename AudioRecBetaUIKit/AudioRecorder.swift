@@ -90,6 +90,8 @@ class AudioRecorder: NSObject, ObservableObject {
         audioRecorder.stop()
         recording = false
         
+        
+        
         //fetchRecordings function should be called every time a new recording is completed
         fetchRecordings()
         
@@ -135,5 +137,19 @@ class AudioRecorder: NSObject, ObservableObject {
         fetchRecordings()
         
     } // end deleteRecording func
+    
+    // sends recording to BirdNET a sound file  and navigates to results
+    
+//    func sendAudio() {
+//        let fileManager = FileManager.default
+//        let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+//        let directoryContents = try! fileManager.contentsOfDirectory(at: documentDirectory, includingPropertiesForKeys: nil)
+//        // Last recorded audio file
+//        let file = directoryContents[0]
+//        
+//        
+//    }
+//    
+    
     
 } // end of class declaration?

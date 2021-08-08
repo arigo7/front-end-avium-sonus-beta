@@ -19,6 +19,10 @@
 		607EE4D326BD0B490041930B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607EE4D226BD0B490041930B /* Extensions.swift */; };
 		607EE4D526BD1E790041930B /* RecordingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607EE4D426BD1E790041930B /* RecordingDataModel.swift */; };
 		607EE4D726BD222D0041930B /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607EE4D626BD222D0041930B /* Helper.swift */; };
+		607F5AEB26BF20890072AF97 /* Birds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F5AEA26BF20890072AF97 /* Birds.swift */; };
+		607F5AED26BF21E00072AF97 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F5AEC26BF21E00072AF97 /* Api.swift */; };
+		607F5AEF26BF28B00072AF97 /* BirdResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F5AEE26BF28B00072AF97 /* BirdResultsView.swift */; };
+		607F5AF126BF2BA80072AF97 /* LoadingModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F5AF026BF2BA80072AF97 /* LoadingModalView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +40,10 @@
 		607EE4D226BD0B490041930B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		607EE4D426BD1E790041930B /* RecordingDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingDataModel.swift; sourceTree = "<group>"; };
 		607EE4D626BD222D0041930B /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		607F5AEA26BF20890072AF97 /* Birds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Birds.swift; sourceTree = "<group>"; };
+		607F5AEC26BF21E00072AF97 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		607F5AEE26BF28B00072AF97 /* BirdResultsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BirdResultsView.swift; sourceTree = "<group>"; };
+		607F5AF026BF2BA80072AF97 /* LoadingModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingModalView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +76,9 @@
 		607EE4B926BCB6EC0041930B /* AudioRecBetaUIKit */ = {
 			isa = PBXGroup;
 			children = (
+				607F5AEA26BF20890072AF97 /* Birds.swift */,
+				607F5AEE26BF28B00072AF97 /* BirdResultsView.swift */,
+				607F5AEC26BF21E00072AF97 /* Api.swift */,
 				607EE4BA26BCB6EC0041930B /* AppDelegate.swift */,
 				607EE4BC26BCB6EC0041930B /* SceneDelegate.swift */,
 				607EE4BE26BCB6EC0041930B /* ContentView.swift */,
@@ -81,6 +92,7 @@
 				607EE4D426BD1E790041930B /* RecordingDataModel.swift */,
 				607EE4D626BD222D0041930B /* Helper.swift */,
 				607AE28926BDBC9D00DB37EA /* AudioPlayer.swift */,
+				607F5AF026BF2BA80072AF97 /* LoadingModalView.swift */,
 			);
 			path = AudioRecBetaUIKit;
 			sourceTree = "<group>";
@@ -163,12 +175,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				607F5AF126BF2BA80072AF97 /* LoadingModalView.swift in Sources */,
 				607EE4D126BCFD230041930B /* RecordingList.swift in Sources */,
 				607EE4D326BD0B490041930B /* Extensions.swift in Sources */,
+				607F5AEF26BF28B00072AF97 /* BirdResultsView.swift in Sources */,
 				607AE28A26BDBC9D00DB37EA /* AudioPlayer.swift in Sources */,
 				607EE4D526BD1E790041930B /* RecordingDataModel.swift in Sources */,
 				607EE4BB26BCB6EC0041930B /* AppDelegate.swift in Sources */,
+				607F5AED26BF21E00072AF97 /* Api.swift in Sources */,
 				607EE4BD26BCB6EC0041930B /* SceneDelegate.swift in Sources */,
+				607F5AEB26BF20890072AF97 /* Birds.swift in Sources */,
 				607EE4CF26BCB7FD0041930B /* AudioRecorder.swift in Sources */,
 				607EE4BF26BCB6EC0041930B /* ContentView.swift in Sources */,
 				607EE4D726BD222D0041930B /* Helper.swift in Sources */,
