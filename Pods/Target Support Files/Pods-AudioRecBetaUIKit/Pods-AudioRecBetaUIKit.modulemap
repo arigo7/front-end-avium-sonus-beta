@@ -1,0 +1,6 @@
+framework module Pods_AudioRecBetaUIKit {
+  umbrella header "Pods-AudioRecBetaUIKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

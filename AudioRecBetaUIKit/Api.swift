@@ -6,11 +6,19 @@
 //
 
 import Foundation
+import Alamofire
 // import Combine? 
 
 class Api: ObservableObject {
     // @Published before a property - will update any SwiftUI views that are watching for changes (lets swift know to watch for changes of this variable)
-    @Published var birds = [Bird]()
+    
+    @Published var birds = [Bird]();
+    var sessionManager: Alamofire.Session?;
+    init() {
+        let configuration = URLSessionConfiguration.af.default;
+        configuration.timeoutIntervalForRequest = 120;
+        sessionManager = Alamofire.Session(configuration: configuration, startRequestsImmediately: true);
+    }
 
     func loadData(completion:@escaping ([Bird]) -> ()) {
         guard let url = URL(string: "http://127.0.0.1:5000/jsonfile") else {
@@ -76,6 +84,13 @@ class Api: ObservableObject {
 //        //After you create the task, you must start it by calling its resume() method.
 //        }.resume()
 //    } // end uploadData
-    
+        func uploadData(audioFile: URL) {
+            struct HTTPBinResponse: Decodable {let results: [Bird]}
+            let data: Data? = try? Data(contentsOf: audioFile)
+
+            (self.sessionManager)!.upload(data!, to: "http://127.0.0.1:5000/bird_stream").responseDecodable(of: HTTPBinResponse.self) { response in
+                debugPrint(response)
+            }
+        }
     
 }

@@ -46,6 +46,7 @@ struct RecordingList: View {
 struct RecordingRow: View {
     
     var audioURL: URL
+    let api = Api()
     
     // Each RecordingRow needs its own AudioPlayer for the respective audio recording, so here initialize one separate AudioPlayer instance as an ObservedObject for each RecordingRow
     @ObservedObject var audioPlayer = AudioPlayer()
@@ -58,6 +59,8 @@ struct RecordingRow: View {
                                 // Api call here
                                 print("Analyzing Audio")
                             print(self.audioURL)
+//                            Api().uploadData(audioFile: self.audioURL)
+                            api.uploadData(audioFile: self.audioURL)
                             // now call the two functions (startPlayback(audio) and stopPlayback()) from our RecordingRow’s start and stop buttons
             //                self.audioPlayer.startPlayback(audio: self.audioURL)
                         }) {

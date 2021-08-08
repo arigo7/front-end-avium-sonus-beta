@@ -11,7 +11,7 @@ import SwiftUI
 struct BirdResultsView: View {
     
     @State var birds = [Bird]()
-    
+    // Storing api instance in view
     
     var body: some View {
 //        Text("Hello, world!")
