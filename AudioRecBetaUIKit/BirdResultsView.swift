@@ -36,10 +36,10 @@ struct BirdResultsView: View {
          }
             .onAppear() {
                 Api().loadData { (birds) in self.birds = birds
-                }
+            }
             }.navigationTitle("Bird List")
     }
-}
+} // end BirdResultsView
 
 // structure (preview for view above!)
 struct BirdResultsView_Previews: PreviewProvider {

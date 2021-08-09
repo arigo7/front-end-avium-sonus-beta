@@ -16,7 +16,7 @@ class Api: ObservableObject {
     var sessionManager: Alamofire.Session?;
     init() {
         let configuration = URLSessionConfiguration.af.default;
-        configuration.timeoutIntervalForRequest = 120;
+        configuration.timeoutIntervalForRequest = 180;
         sessionManager = Alamofire.Session(configuration: configuration, startRequestsImmediately: true);
     }
 
@@ -87,9 +87,13 @@ class Api: ObservableObject {
         func uploadData(audioFile: URL) {
             struct HTTPBinResponse: Decodable {let results: [Bird]}
             let data: Data? = try? Data(contentsOf: audioFile)
-
-            (self.sessionManager)!.upload(data!, to: "http://127.0.0.1:5000/bird_stream").responseDecodable(of: HTTPBinResponse.self) { response in
+            (self.sessionManager)!.upload(data!, to: "http://127.0.0.1:5000/bird_stream").responseJSON {
+                response in
                 debugPrint(response)
+                
+//                DispatchQueue.main.async {
+//                    completion(birds)
+//                }
             }
         }
     
