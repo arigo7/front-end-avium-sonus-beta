@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-AudioRecBetaUIKit/Pods-AudioRecBetaUIKit-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/SwiftLocation/SwiftLocation.framework

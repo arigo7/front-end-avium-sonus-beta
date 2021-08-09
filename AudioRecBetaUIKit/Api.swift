@@ -7,6 +7,8 @@
 
 import Foundation
 import Alamofire
+import CoreLocation
+import SwiftLocation
 // import Combine? 
 
 class Api: ObservableObject {
@@ -14,6 +16,9 @@ class Api: ObservableObject {
     
     @Published var birds = [Bird]();
     var sessionManager: Alamofire.Session?;
+    var latitude: CLLocationDegrees?
+    var longitude: CLLocationDegrees?
+    
     init() {
         let configuration = URLSessionConfiguration.af.default;
         configuration.timeoutIntervalForRequest = 180;
@@ -84,16 +89,41 @@ class Api: ObservableObject {
 //        //After you create the task, you must start it by calling its resume() method.
 //        }.resume()
 //    } // end uploadData
+
         func uploadData(audioFile: URL) {
-            struct HTTPBinResponse: Decodable {let results: [Bird]}
-            let data: Data? = try? Data(contentsOf: audioFile)
-            (self.sessionManager)!.upload(data!, to: "http://127.0.0.1:5000/bird_stream").responseJSON {
-                response in
-                debugPrint(response)
-                
-//                DispatchQueue.main.async {
-//                    completion(birds)
+//            var currentLocation: CLLocation!
+//            locManager.requestWhenInUseAuthorization()
+//            if
+//               CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+//               CLLocationManager.authorizationStatus() ==  .authorizedAlways
+//            {
+//                locManager.requestLocation()
+//                guard let currentLocation = locManager.location else {
+//                    locManager.requestWhenInUseAuthorization()
+//                    return
 //                }
+//            }
+//            debugPrint(currentLocation?.coordinate.latitude)
+//            debugPrint(currentLocation?.coordinate.longitude)
+            SwiftLocation.gpsLocation().then {
+                self.latitude = $0.location!.coordinate.latitude
+                self.longitude = $0.location!.coordinate.longitude
+                debugPrint("Location is \(self.latitude!), \(self.longitude!)")
+            
+                struct HTTPBinResponse: Decodable {let results: [Bird]}
+                let data: Data? = try? Data(contentsOf: audioFile)
+                
+                var headers: HTTPHeaders = HTTPHeaders.default
+                headers.add(HTTPHeader(name: "latitude", value: "\(self.latitude!)"))
+                headers.add(HTTPHeader(name: "longitude", value: "\(self.longitude!)"))
+                (self.sessionManager)!.upload(data!, to: "http://127.0.0.1:5000/bird_stream", headers: headers).responseJSON {
+                    response in
+                    debugPrint(response)
+                    
+    //                DispatchQueue.main.async {
+    //                    completion(birds)
+    //                }
+                }
             }
         }
     

@@ -7,16 +7,16 @@
 // /Users/ada/Developer/projects/capstone/feAviumSonusBeta/AudioRecBetaUIKit/AudioRecBetaUIKit/com.arigo.AudioRecBetaUIKit 2021-08-06 00:21.45.xcappdata/AppData/Documents/06-08-21_at_00:06:06.m4a
 
 import SwiftUI
+import CoreLocation
 
 // Content view will need to access an Audio Recorder instance so we declare a corresponding ObsevedObbject
 struct ContentView: View {
     // declaring corresponding ObservedObject
     @ObservedObject var audioRecorder: AudioRecorder
-    
     var body: some View {
         // We embed our ContentView in a NavigationView and provide it with a navigation bar.
         // NAVIGATION!!!!!!
-        
+
         NavigationView{
             VStack {
                 // Inserts the RecordingsList into our ContentView above the start/stop button and uses the AudioRecorder instance of the ContentView as the RecordingsList‘s audioRecorder.

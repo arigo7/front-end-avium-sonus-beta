@@ -1,16 +1,20 @@
 PODS:
   - Alamofire (5.4.3)
+  - SwiftLocation/Core (5.1.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.4)
+  - SwiftLocation/Core
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - SwiftLocation
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  SwiftLocation: 83e0ea75a1969cee3a1197e2b7095603fc23fde5
 
-PODFILE CHECKSUM: 87fb41f412fd688803f1049d9ebe56b31b0a9e72
+PODFILE CHECKSUM: a5d6a6f57011125661441a704a0607ba9de0b570
 
 COCOAPODS: 1.10.2
