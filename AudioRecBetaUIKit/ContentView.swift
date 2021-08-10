@@ -4,7 +4,9 @@
 //
 //  Created by Ari on 8/5/21.
 //
-// /Users/ada/Developer/projects/capstone/feAviumSonusBeta/AudioRecBetaUIKit/AudioRecBetaUIKit/com.arigo.AudioRecBetaUIKit 2021-08-06 00:21.45.xcappdata/AppData/Documents/06-08-21_at_00:06:06.m4a
+// ContentView.swift - by default SwiftUi declare ContentView and ContentView_Previws
+
+/// Example of hat an audio file path  /Users/ada/Developer/projects/capstone/feAviumSonusBeta/AudioRecBetaUIKit/AudioRecBetaUIKit/com.arigo.AudioRecBetaUIKit 2021-08-06 00:21.45.xcappdata/AppData/Documents/06-08-21_at_00:06:06.m4a
 
 import SwiftUI
 import CoreLocation

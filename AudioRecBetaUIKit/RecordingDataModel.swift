@@ -9,6 +9,7 @@ import Foundation
 
 struct Recording {
     let fileURL: URL
-    // Don't really want it to be a Date, but if it doesn't affect back end, it's all good
+    // To give the recording a unique nane, createdAt will be the name that
+    // will be the date/time it was created
     let createdAt: Date
 }

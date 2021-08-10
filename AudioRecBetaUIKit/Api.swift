@@ -51,13 +51,11 @@ class Api: ObservableObject {
         }.resume()
     } // end loadData
     
-    // THIS GOES ALONG WITH STEP NUMBER 2
-    
-    // method that checks check update
+    /// THIS GOES ALONG WITH STEP NUMBER 2 PSEUDOCODE
+    // 1. method that checks check update
     // returns that file has changed like true false , endpoint in flask
     // true or false so check that new endpoint
-    // load data 
-    
+    // then call function upload data here something like this
 //    func uploadData(audioFile: Data, completion:@escaping ([Bird]) -> ()) {
 //    guard let url = URL(string: "http://127.0.0.1:5000/bird") else {
 //        print("Invalid url...")
@@ -72,23 +70,6 @@ class Api: ObservableObject {
        // call load data function = it'll pull whatever it has
 //    }
     
-    
-//    func uploadData(audioFile: Data, completion:@escaping ([Bird]) -> ()) {
-//        guard let url = URL(string: "http://127.0.0.1:5000/bird") else {
-//            print("Invalid url...")
-//            return
-//        }
-//
-//        // completion handler
-//        URLSession.shared.dataTask(with: url) {data, response, error in
-//            let birds = try! JSONDecoder().decode([Bird].self, from: data!)
-//            print(birds)
-//            DispatchQueue.main.async {
-//                completion(birds)
-//            }
-//        //After you create the task, you must start it by calling its resume() method.
-//        }.resume()
-//    } // end uploadData
 
         func uploadData(audioFile: URL) {
 //            var currentLocation: CLLocation!
@@ -120,6 +101,7 @@ class Api: ObservableObject {
                     response in
                     debugPrint(response)
                     
+                    /// Reload the  view using the main dispatch queue
     //                DispatchQueue.main.async {
     //                    completion(birds)
     //                }
