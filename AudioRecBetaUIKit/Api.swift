@@ -74,7 +74,7 @@ class Api: ObservableObject {
 //    }
     
 
-        func uploadData(audioFile: URL) {
+        func uploadData(audioFile: URL, completion:@escaping ([Bird]) -> ()) {
 //            var currentLocation: CLLocation!
 //            locManager.requestWhenInUseAuthorization()
 //            if
@@ -103,11 +103,12 @@ class Api: ObservableObject {
                 (self.sessionManager)!.upload(data!, to: "http://127.0.0.1:5000/bird_stream", headers: headers).responseJSON {
                     response in
                     debugPrint(response)
-                    
+                    guard let data = response.data else { return }
+                    let birds = try! JSONDecoder().decode([Bird].self, from: data)
                     /// Reload the  view using the main dispatch queue
-    //                DispatchQueue.main.async {
-    //                    completion(birds)
-    //                }
+                    DispatchQueue.main.async {
+                        completion(birds)
+                    }
                 }
             }
         }

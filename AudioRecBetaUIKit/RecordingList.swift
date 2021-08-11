@@ -42,6 +42,38 @@ struct RecordingList: View {
     } // end function delete
 }
 
+struct ModalView: View {
+    @Binding var presentedAsModal: Bool
+    @State var audioURL: URL
+    
+    
+    var body: some View {
+        Button("Dismiss Results") { self.presentedAsModal = false }
+//        VStack(alignment: .center) {
+        //    Text("Analyzing audio ...")
+        //        .opacity(0.90)
+        //        .foregroundColor(.pink)
+        //    ProgressView()
+        //        .progressViewStyle(CircularProgressViewStyle())
+        //}
+        // initializing the birds results view with the audio url file
+        BirdResultsView(audioURL: self.$audioURL)
+    } // end body modal
+} // end modal view
+
+/// if self.presentedAsModal {
+//VStack(alignment: .center) {
+//    Text("Analyzing audio ...")
+//        .opacity(0.90)
+//        .foregroundColor(.pink)
+//    ProgressView()
+//        .progressViewStyle(CircularProgressViewStyle())
+//}
+//} else {
+//// initializing the birds results view with the audio url file
+//BirdResultsView(audioURL: self.$audioURL)
+//}
+
 //RecordingsList should display one row per stored recording so we add a RecordingRow view struc RecordingsList struct.
 struct RecordingRow: View {
     
@@ -49,18 +81,20 @@ struct RecordingRow: View {
     let api = Api()
     
     // Each RecordingRow needs its own AudioPlayer for the respective audio recording, so here initialize one separate AudioPlayer instance as an ObservedObject for each RecordingRow
-    @ObservedObject var audioPlayer = AudioPlayer()
-    // @State var presentingModal = false  -- for presenting flag for presenting modal -
     
+    @ObservedObject var audioPlayer = AudioPlayer()
+    @State var presentingModal = false  //-- for presenting flag for presenting modal -
+    @State var birds: [Bird] = []
     var body: some View {
         HStack {
             // Button ANalyze
                         Button(action: {
-                                // Api call here
-                                print("Analyzing Audio")
-                            print(self.audioURL)
-//                            Api().uploadData(audioFile: self.audioURL)
-                            api.uploadData(audioFile: self.audioURL)
+//                                // Api call here
+//                                print("Analyzing Audio")
+//                            print(self.audioURL)
+////                            Api().uploadData(audioFile: self.audioURL)
+//                            api.uploadData(audioFile: self.audioURL)
+                            self.presentingModal = true
                             // now call the two functions (startPlayback(audio) and stopPlayback()) from our RecordingRow’s start and stop buttons
             //                self.audioPlayer.startPlayback(audio: self.audioURL)
                         }) {
@@ -68,6 +102,8 @@ struct RecordingRow: View {
                                 .imageScale(.large)
             //                Text("Sent to Analyze")
                         }
+                        // prop audio url passed on here, modal is built with that url
+                        .sheet(isPresented: $presentingModal) { ModalView(presentedAsModal: self.$presentingModal,  audioURL: self.audioURL) }
             // Each row should be assigned to the path of the particular audio file. Within the HStack we then path without the file extension for a Text object which we push to the left side with the help of a Spacer.
             Text("\(audioURL.lastPathComponent)")
             Spacer()

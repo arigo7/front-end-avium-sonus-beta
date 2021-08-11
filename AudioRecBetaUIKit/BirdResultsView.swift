@@ -15,6 +15,10 @@ import SwiftUI
 struct BirdResultsView: View {
     
     @State var birds = [Bird]()
+    @Binding var audioURL: URL
+    @State var loading: Bool = false
+    // for alamofire to not garbage collect API
+    let api = Api()
     // Storing api instance in view
     
     var body: some View {
@@ -23,7 +27,9 @@ struct BirdResultsView: View {
             .font(.title)
             .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
             .padding()
-        
+        if loading {
+            ProgressView()
+        } else {
         List(birds) {
             bird in
             VStack(alignment: .trailing) {
@@ -51,9 +57,10 @@ struct BirdResultsView: View {
             
          }
             .onAppear() {
-                Api().loadData { (birds) in self.birds = birds
-            }
+                // passing url all the way to upload data which is called when the modal appears which builds a birds result view
+                api.uploadData(audioFile: audioURL) { (birds) in self.birds = birds }
             }.navigationTitle("Bird List")
+    }
     }
 } // end BirdResultsView
 
@@ -65,9 +72,11 @@ struct BirdResultsView: View {
 //    }
 //} // end BirdResultsView
 
-// structure (preview for view above!)
-struct BirdResultsView_Previews: PreviewProvider {
-    static var previews: some View {
-        BirdResultsView()
-    }
-}
+// structure (preview for view above!) -- giving me an error! 
+
+//struct BirdResultsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BirdResultsView()
+//    }
+//}
+
