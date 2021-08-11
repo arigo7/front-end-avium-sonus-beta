@@ -5,7 +5,11 @@
 //  Created by Ari on 8/5/21.
 //
 
+
+// @ObservedObject (protocol) - will be used (not here) inside a view to store an observable object instance and (inside?) the @Published property - before any properties that should trigger change notifications
+
 import SwiftUI
+// I think I need to import UIKit here which I think is my ViewController to handle push from ResultsView (ViewController2) into ContentView (ViewController1) which is my main view where I'll push my results of the API call
 
 // structure (view protocol) - view content layout
 struct BirdResultsView: View {

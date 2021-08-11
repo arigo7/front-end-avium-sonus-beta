@@ -5,6 +5,9 @@
 //  Created by Ari on 8/7/21.
 //
 
+// ObservableObject (protocol ∈ Combine framework) used within custom class/model
+// (Bird is a Model) - keeps track of state used with some sort of class that can store data
+
 import Foundation
 import Alamofire
 import CoreLocation
