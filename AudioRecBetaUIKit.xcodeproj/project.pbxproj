@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,7 +11,7 @@
 		607AE28A26BDBC9D00DB37EA /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607AE28926BDBC9D00DB37EA /* AudioPlayer.swift */; };
 		607EE4BB26BCB6EC0041930B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607EE4BA26BCB6EC0041930B /* AppDelegate.swift */; };
 		607EE4BD26BCB6EC0041930B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607EE4BC26BCB6EC0041930B /* SceneDelegate.swift */; };
-		607EE4BF26BCB6EC0041930B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607EE4BE26BCB6EC0041930B /* ContentView.swift */; };
+		607EE4BF26BCB6EC0041930B /* RecordingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607EE4BE26BCB6EC0041930B /* RecordingsView.swift */; };
 		607EE4C126BCB6ED0041930B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607EE4C026BCB6ED0041930B /* Assets.xcassets */; };
 		607EE4C426BCB6ED0041930B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607EE4C326BCB6ED0041930B /* Preview Assets.xcassets */; };
 		607EE4C726BCB6ED0041930B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607EE4C526BCB6ED0041930B /* LaunchScreen.storyboard */; };
@@ -33,7 +33,7 @@
 		607EE4B726BCB6EC0041930B /* AudioRecBetaUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioRecBetaUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607EE4BA26BCB6EC0041930B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		607EE4BC26BCB6EC0041930B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		607EE4BE26BCB6EC0041930B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		607EE4BE26BCB6EC0041930B /* RecordingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsView.swift; sourceTree = "<group>"; };
 		607EE4C026BCB6ED0041930B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		607EE4C326BCB6ED0041930B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		607EE4C626BCB6ED0041930B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 				607F5AEC26BF21E00072AF97 /* Api.swift */,
 				607EE4BA26BCB6EC0041930B /* AppDelegate.swift */,
 				607EE4BC26BCB6EC0041930B /* SceneDelegate.swift */,
-				607EE4BE26BCB6EC0041930B /* ContentView.swift */,
+				607EE4BE26BCB6EC0041930B /* RecordingsView.swift */,
 				607EE4C026BCB6ED0041930B /* Assets.xcassets */,
 				607EE4C526BCB6ED0041930B /* LaunchScreen.storyboard */,
 				607EE4C826BCB6ED0041930B /* Info.plist */,
@@ -118,7 +118,6 @@
 				5B835353FECD18BFF3BDA6AD /* Pods-AudioRecBetaUIKit.debug.xcconfig */,
 				4EFED052C31F62A065254225 /* Pods-AudioRecBetaUIKit.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -255,7 +254,7 @@
 				607EE4BD26BCB6EC0041930B /* SceneDelegate.swift in Sources */,
 				607F5AEB26BF20890072AF97 /* Birds.swift in Sources */,
 				607EE4CF26BCB7FD0041930B /* AudioRecorder.swift in Sources */,
-				607EE4BF26BCB6EC0041930B /* ContentView.swift in Sources */,
+				607EE4BF26BCB6EC0041930B /* RecordingsView.swift in Sources */,
 				607EE4D726BD222D0041930B /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

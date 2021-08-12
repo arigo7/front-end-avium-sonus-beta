@@ -11,21 +11,27 @@
 import SwiftUI
 import CoreLocation
 
-// Content view will need to access an Audio Recorder instance so we declare a corresponding ObsevedObbject
-struct ContentView: View {
-    // declaring corresponding ObservedObject
+/// Content view will need to access an AudioRecorder instance - need to declare ObsevedObject on AudioRecorder
+
+struct RecordingsView: View {
+    
+    /// declaring audioRecorder as ObservedObject
     @ObservedObject var audioRecorder: AudioRecorder
     var body: some View {
-        // We embed our ContentView in a NavigationView and provide it with a navigation bar.
-        // NAVIGATION!!!!!!
-
+        
+        /// ContentView embeded in a NavigationView and provide it with a navigation bar.
         NavigationView{
+            
             VStack {
-                // Inserts the RecordingsList into our ContentView above the start/stop button and uses the AudioRecorder instance of the ContentView as the RecordingsList‘s audioRecorder.
+                
+                /// Inserting RecordingsList into ContentView above the start/stop button => using an
+                /// AudioRecorder instance of the ContentView as the RecordingsList‘s audioRecorder.
                 RecordingList(audioRecorder: audioRecorder)
+                
+                /// when audioRecorder not recording presents a button to start recording
                 if audioRecorder.recording == false {
-                    // or Button(action: {self.audioRecorder.stopRecording()}) { ???
-                    // Button(action: {print("Record")}) { to:
+                    
+                    /// Recording button a pink circle!
                     Button(action: {self.audioRecorder.startRecording()}) {
                         Image(systemName: "circle.fill")
                             .resizable()
@@ -36,10 +42,10 @@ struct ContentView: View {
                             .foregroundColor(.pink)
                             .padding(.bottom, 40)
                     }
-                    
+                /// if audioRecorder is not recording - button to stop recording
                 } else {
-                    // Button(action: {print("Stop")}) { now:
-                    //call stopRecording() function from our stop button:
+                    
+                    
                     Button(action: {self.audioRecorder.stopRecording()}) {
                         Image(systemName: "stop.fill")
                             .resizable()
@@ -65,7 +71,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        // initializing and Audio recorder instance for our previous struct, as well as for the scene function on our scenedelegate.swift ContentView
-        ContentView(audioRecorder: AudioRecorder())
+        /// initializing and Audio recorder instance on previous struct, as well as for the scene function on our scenedelegate.swift ContentView
+        RecordingsView(audioRecorder: AudioRecorder())
     }
 }

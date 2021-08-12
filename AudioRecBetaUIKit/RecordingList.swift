@@ -102,6 +102,7 @@ struct RecordingRow: View {
                                 .imageScale(.large)
             //                Text("Sent to Analyze")
                         }
+                        .buttonStyle(PlainButtonStyle())
                         // prop audio url passed on here, modal is built with that url
                         .sheet(isPresented: $presentingModal) { ModalView(presentedAsModal: self.$presentingModal,  audioURL: self.audioURL) }
             // Each row should be assigned to the path of the particular audio file. Within the HStack we then path without the file extension for a Text object which we push to the left side with the help of a Spacer.
@@ -123,9 +124,6 @@ struct RecordingRow: View {
             
 //
             
-            
-            
-            
 //            
             if audioPlayer.isPlaying == false {
                 Button(action: {
@@ -137,6 +135,7 @@ struct RecordingRow: View {
                     Image(systemName: "play.circle")
                         .imageScale(.large)
                 }
+                .buttonStyle(PlainButtonStyle())
                 // If an audio is currently playing, we need to display a button to stop the playback
             } else {
                 Button(action: {
@@ -147,6 +146,7 @@ struct RecordingRow: View {
                     Image(systemName: "stop.fill")
                         .imageScale(.large)
                 }
+                .buttonStyle(PlainButtonStyle())
             } // end of if and else  statement
             
             

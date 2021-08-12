@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //// initializing and Audio recorder instance for our previous struct (contentView?), under scene function as well for the scene function on our scenedelegate.swift ContentView
         
         /// The scene(_:willConnectTo:options:) function creates a SwiftUI view, puts it in a hosting controller, assigns that to the root view controller of the window property, and puts that window at the front of the app UI
-        let contentView = ContentView(audioRecorder: AudioRecorder())
+        let contentView = RecordingsView(audioRecorder: AudioRecorder())
         
         /// I think here I'll have to initialize the scene for the bird display?
         

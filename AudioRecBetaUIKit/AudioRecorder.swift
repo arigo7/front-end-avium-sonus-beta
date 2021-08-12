@@ -5,10 +5,9 @@
 //  Created by Ari on 8/5/21.
 //
 
-// I think files will be saved here eventually? /Users/ada/Developer/projects/capstone/feAviumSonusBeta/AudioRecBetaUIKit/AudioRecBetaUIKit/Info.plist
-// here I will need to insert location as well as send upload recording button
 
-// we use our AudioRecorder to record, end and save audios
+
+// AudioRecorder to record, end, and save audios
 
 
 
@@ -17,12 +16,16 @@ import SwiftUI
 import Combine
 import AVFoundation
 
+// AudioRecorder adapts to ObservableObject and NSObject protocols
+
+// ObservableObject protocol - to notify observing VIEWS about changes
+
 class AudioRecorder: NSObject, ObservableObject {
     
     // fetchRecordings function should be called every time a new recording is completed.
     // also when the app and therefore also the AudioRecorder is launched for the first time.
     // we overwrite the init function of the AudioRecorder accordingly. To make this work,
-    //our AudioRecorder must adopt the NSObject protocol (above)
+    // our AudioRecorder must adopt the NSObject protocol (above)
     override init() {
         super.init()
         fetchRecordings()
@@ -30,23 +33,28 @@ class AudioRecorder: NSObject, ObservableObject {
     
     //To notify observing views about changes, for example when the recording is
     //started, we need a PassthroughObject.
+    /// PasthrougSubject  => broadcasts elements to downstream subscribers
     let objectWillChange = PassthroughSubject<AudioRecorder, Never>()
     
-    // initialize an AVAudioRecorder instance with our AudioRecorder - this will
-    // help start recording sessions later
+    // initialize an AVAudioRecorder instance with AudioRecorder - will help start
+    // recording sessions later
     var audioRecorder: AVAudioRecorder!
     
     // after creating RecordingDataModel, create array to hold the recordings.
     var recordings = [Recording]()
     
-    // audio Rec should pay attention  if it's alrady recording. If this variable
-    // is changed when recording is  finished, we update subscribing views using
-    // objectWillChange property
+    // AudioRecorder should pay attention if it's alrady recording. If variable
+    ///recording
+    // changes  (i.e when recording is finished), we update subscribing views using
+    /// objectWillChange property
     var recording = false {
         didSet {
             objectWillChange.send(self)
         }
     }
+    
+    /// AudioRecorder Class Functions
+    /// ------------------------------------------------------------------------
     
     // Implements function to start audio recording when user taps on the record button. We call this function startRecording.
     func startRecording() {

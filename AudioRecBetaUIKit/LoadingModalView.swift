@@ -21,13 +21,13 @@ struct SwiftUIView_Previews: PreviewProvider {
 }
 
 
-
+//
 //// struct ModalView: View {
 //@Binding var presentedAsModal: Bool
 //var body: some View {
-
- // check file updates - every whatever time
-
+//
+////  check file updates - every whatever time
+//
 //    Button("dismiss") { self.presentedAsModal = false }
 //}
-//}
+
