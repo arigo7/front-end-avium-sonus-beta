@@ -22,9 +22,14 @@ class Api: ObservableObject {
     var latitude: CLLocationDegrees?
     var longitude: CLLocationDegrees?
     
+    // initializing an alamofire session instance
     init() {
         let configuration = URLSessionConfiguration.af.default;
+        
+        // flask response takes from 45 sec -1 min - so it doesn't time out before this time
         configuration.timeoutIntervalForRequest = 180;
+        
+        // Alamofire instance
         sessionManager = Alamofire.Session(configuration: configuration, startRequestsImmediately: true);
     }
 
@@ -33,10 +38,15 @@ class Api: ObservableObject {
             print("Invalid url...")
             return
         }
-        // URLSession class - provide an API for downloading data from an uploading data to endpoints indicated by URLs (app creates one or more URLSession instances - each coordinating a group of related data-transfer tasks).
-            //URLSession has singleton shared session for basic requests
-        // Within a session, you create tasks that optionally upload data to a server and then retrieve data from the server either as a file on disk or as one or more NSData objects in memory. Data tasks send and receive data using NSData objects.
-        //dataTask(with:completionHandler:) - creates task - 1 retreives URL contents based on specified URL req object, 2 calls handler upon completion
+        // URLSession class -  API for downloading and uploading data from and to endpoints
+        // indicated by URLs (app creates one or more URLSession instances - each coordinating
+        // a group of related data-transfer tasks).
+        // URLSession has singleton shared session for basic requests
+        // Within a session, you create tasks that optionally upload data to a server and then
+        // retrieve data from the server either as a file on disk or as one or more NSData objects
+        // in memory. Data tasks send and receive data using NSData objects.
+        // dataTask(with:completionHandler:) - creates task - 1 retreives URL contents based
+        // on specified URL req object, 2 calls handler upon completion
         //(with: url) - URL request object
         //{ data, response, error ....  - completionHandler
         // data: data returned by the server
@@ -54,19 +64,14 @@ class Api: ObservableObject {
         }.resume()
     } // end loadData
     
-    /// THIS GOES ALONG WITH STEP NUMBER 2 PSEUDOCODE
-    // 1. method that checks check update
-    // returns that file has changed like true false , endpoint in flask
-    // true or false so check that new endpoint
-    // then call function upload data here something like this
-//    func uploadData(audioFile: Data, completion:@escaping ([Bird]) -> ()) {
-//    guard let url = URL(string: "http://127.0.0.1:5000/bird") else {
-//        print("Invalid url...")
-//        return
-//        }
+
+    
+    
+
     // embed audio file
         // URLSession.shared.(pass in audio file) (upload the bird audio file)
-        // once i up;load it';ll have completion handler { like ... data, response error  and inside comletion handler,
+        // once I upload it, I'll have completion handler { like ... data, response, error
+        // and inside comletion handler,
         // here it's finished uploading but because of setup I don't have an indicator of when it's analyzing
         // first hard code time a minute to wait for it because don't have indicator
         // method that checks if file has changed ( check update method)
@@ -75,20 +80,7 @@ class Api: ObservableObject {
     
 
         func uploadData(audioFile: URL, completion:@escaping ([Bird]) -> ()) {
-//            var currentLocation: CLLocation!
-//            locManager.requestWhenInUseAuthorization()
-//            if
-//               CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
-//               CLLocationManager.authorizationStatus() ==  .authorizedAlways
-//            {
-//                locManager.requestLocation()
-//                guard let currentLocation = locManager.location else {
-//                    locManager.requestWhenInUseAuthorization()
-//                    return
-//                }
-//            }
-//            debugPrint(currentLocation?.coordinate.latitude)
-//            debugPrint(currentLocation?.coordinate.longitude)
+
             SwiftLocation.gpsLocation().then {
                 self.latitude = $0.location!.coordinate.latitude
                 self.longitude = $0.location!.coordinate.longitude
@@ -104,13 +96,36 @@ class Api: ObservableObject {
                     response in
                     debugPrint(response)
                     guard let data = response.data else { return }
+                    // if this birds is empty display
                     let birds = try! JSONDecoder().decode([Bird].self, from: data)
                     /// Reload the  view using the main dispatch queue
                     DispatchQueue.main.async {
                         completion(birds)
+                        
+                    // else the no results found on screen, on the catch I can use 400 response
                     }
                 }
             }
         }
     
 }
+/// IDEA
+// 1. method that checks update
+// returns that file has changed like true false , endpoint in flask
+// true or false so check that new endpoint
+
+
+//            var currentLocation: CLLocation!
+//            locManager.requestWhenInUseAuthorization()
+//            if
+//               CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+//               CLLocationManager.authorizationStatus() ==  .authorizedAlways
+//            {
+//                locManager.requestLocation()
+//                guard let currentLocation = locManager.location else {
+//                    locManager.requestWhenInUseAuthorization()
+//                    return
+//                }
+//            }
+//            debugPrint(currentLocation?.coordinate.latitude)
+//            debugPrint(currentLocation?.coordinate.longitude)

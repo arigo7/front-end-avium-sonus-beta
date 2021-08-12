@@ -29,6 +29,8 @@ struct BirdResultsView: View {
             .padding()
         if loading {
             ProgressView()
+                .progressViewStyle(CircularProgressViewStyle(tint: .orange))
+                .scaleEffect(3)
         } else {
         List(birds) {
             bird in
@@ -57,9 +59,12 @@ struct BirdResultsView: View {
             
          }
             .onAppear() {
+                loading = true
                 // passing url all the way to upload data which is called when the modal appears which builds a birds result view
                 api.uploadData(audioFile: audioURL) { (birds) in self.birds = birds }
+                loading = false
             }.navigationTitle("Bird List")
+            
     }
     }
 } // end BirdResultsView
