@@ -69,7 +69,7 @@ struct RecordingsView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct RecordingsView_Previews: PreviewProvider {
     static var previews: some View {
         /// initializing and Audio recorder instance on previous struct, as well as for the scene function on our scenedelegate.swift ContentView
         RecordingsView(audioRecorder: AudioRecorder())
