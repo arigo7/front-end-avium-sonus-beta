@@ -4,7 +4,7 @@
 //
 //  Created by Ari on 8/5/21.
 //
-//SceneDelegate uses delegation, of course, and one delegate typically responds to any scene. You use one delegate to configure all scenes in your app
+/// SceneDelegate uses delegation, of course, and one delegate typically responds to any scene. You use one delegate to configure all scenes in App
 
 import UIKit
 import SwiftUI
@@ -13,9 +13,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-    // Scene's delegate most important function https://learnappmaking.com/scene-delegate-app-delegate-xcode-11-ios-13/
-    ////  most similar to the role of the application(_:didFinishLaunchingWithOptions:) function of the app delegate.
-    // function is called when a scene is added to the app, so it’s the perfect point to configure that scene
+    /// Scene's delegate most important function https://learnappmaking.com/scene-delegate-app-delegate-xcode-11-ios-13/
+    ///  most similar to the role of the application(_:didFinishLaunchingWithOptions:) function of the app delegate.
+    /// function is called when a scene is added to the app, so it’s the perfect point to configure that scene
     
     /// scene delegate configures the scene, at the right time, when scene(_:willConnectTo:options:) is called
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -23,10 +23,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
-        // Creates the SwiftUI view that provides the window contents.
+        /// Creates the SwiftUI view that provides the window contents.
         //// initializing and Audio recorder instance for our previous struct (contentView?), under scene function as well for the scene function on our scenedelegate.swift ContentView
         
         /// The scene(_:willConnectTo:options:) function creates a SwiftUI view, puts it in a hosting controller, assigns that to the root view controller of the window property, and puts that window at the front of the app UI
+        /// ********* API DELEGATE THING!
         let contentView = RecordingsView(audioRecorder: AudioRecorder())
         
         /// I think here I'll have to initialize the scene for the bird display?

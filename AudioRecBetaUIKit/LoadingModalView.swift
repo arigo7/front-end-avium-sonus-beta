@@ -13,6 +13,7 @@ struct ModalView2: View {
     /// ****** loading ball! - true because when it opens I want it there ******
     @State var isLoading: Bool = true
     @State var audioURL: URL
+    
     /// ***** to close  modal view - this comes from Recording LIst *****
     /// changes when results view (***API  *** ends with completion handler) display
     @Binding var showResults: Bool

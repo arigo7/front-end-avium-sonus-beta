@@ -4,8 +4,6 @@
 //
 //  Created by Ari on 8/5/21.
 
-/// TRYING THIS NOW ------------------------------------------------------------------------------------------------
-///
 
 /// @ObservedObject (protocol) - will be used (not here) inside a view to store an observable object instance and (inside?) the @Published property - before any properties that should trigger change notifications
 
@@ -34,9 +32,29 @@ struct BirdResultsView: View {
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 .padding()
         
+        /// INSERT HSTACK HERE w/ interval, bird , confidence for title~~~!***** FIX THIS ****
+        HStack(alignment: .center) {
+            Text("Time Interval")
+                .foregroundColor(.pink)
+                .font(.title2)
+                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                .padding()
+            Text("Bird Name")
+                .foregroundColor(.pink)
+                .font(.title2)
+                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                .padding()
+            Text("Confidence")
+                .foregroundColor(.pink)
+                .font(.title2)
+                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                .padding()
+        }
+        
             /// ********** SOO NEED need to implement *********
             /// if list is empty, show someting, else show '
             /// this :
+        
         List(birds) {
             bird in
             VStack(alignment: .trailing) {
@@ -45,15 +63,21 @@ struct BirdResultsView: View {
                     .font(.title2)
                     .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                     .padding(.bottom)
+                    
                 
                 HStack{
-                    Text("\(bird.beginTimeSec) to")
+                    Text("\(bird.beginTimeSec) -")
                         .foregroundColor(.pink)
                     Text("\(bird.endTimeSec) sec")
                         .foregroundColor(.pink)
                         Spacer()
                     
-                    Text("\((Float(bird.confidence))!*100)%" as String)
+//                    Text("\((Float(bird.confidence))!*100) %" as String)
+//                        .foregroundColor(.orange)
+//                        .font(.body)
+//                        .fontWeight(.bold)
+                    
+                    Text("\(Int(bird.confidence*100)) %" as String)
                         .foregroundColor(.orange)
                         .font(.body)
                         .fontWeight(.bold)
