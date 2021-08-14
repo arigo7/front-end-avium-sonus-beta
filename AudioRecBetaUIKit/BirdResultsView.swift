@@ -22,10 +22,27 @@ struct BirdResultsView: View {
     let api = Api()
     
     var body: some View {
-//        if loading {
-
-//        } else {
-            /// moved so it doesn't show all the time but it shows until loading
+        // I cannot recognize that sound with certainty!
+        if  !loading && birds.count == 0 {
+            
+            VStack {
+                Text("SORRY!")
+                    .foregroundColor(.pink)
+                    .font(.title)
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    .padding()
+                    
+        //            I cannot recognize that sound with certainty!
+                Text("Can't recognize that bird sound")
+                    .foregroundColor(.pink)
+                    .font(.title2)
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    .padding()
+            }
+            
+//            I cannot recognize that sound with certainty!
+        } else {
+            
             Text("Bird Results")
                 .foregroundColor(.pink)
                 .font(.title)
@@ -34,22 +51,28 @@ struct BirdResultsView: View {
         
         /// INSERT HSTACK HERE w/ interval, bird , confidence for title~~~!***** FIX THIS ****
         HStack(alignment: .center) {
-            Text("Time Interval")
+            Text("Interval")
                 .foregroundColor(.pink)
-                .font(.title2)
+                .font(.title3)
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 .padding()
             Text("Bird Name")
                 .foregroundColor(.pink)
-                .font(.title2)
+                .font(.title3)
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 .padding()
-            Text("Confidence")
+            Text("Certainty")
                 .foregroundColor(.pink)
-                .font(.title2)
+                .font(.title3)
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 .padding()
         }
+        }
+//        if birds  {
+
+//        } else {
+            /// moved so it doesn't show all the time but it shows until loading
+          
         
             /// ********** SOO NEED need to implement *********
             /// if list is empty, show someting, else show '
@@ -57,10 +80,10 @@ struct BirdResultsView: View {
         
         List(birds) {
             bird in
-            VStack(alignment: .trailing) {
+            VStack(alignment: .center) {
                
                 Text("\(bird.commonName)")
-                    .font(.title2)
+                    .font(.title3)
                     .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                     .padding(.bottom)
                     
@@ -94,6 +117,7 @@ struct BirdResultsView: View {
                     /// BUILDING BIRD MODEL TO DISPLAY
                     (birds) in self.birds = birds
                     
+                    debugPrint(self.birds)
                     self.loading = false
                 }
 //

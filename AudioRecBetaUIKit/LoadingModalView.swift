@@ -7,34 +7,54 @@
 /// ----------- Working on this ! -------------------------------------------------------------
 
 import SwiftUI
-
 struct ModalView2: View {
     
     /// ****** loading ball! - true because when it opens I want it there ******
     @State var isLoading: Bool = true
     @State var audioURL: URL
     
-    /// ***** to close  modal view - this comes from Recording LIst *****
+    /// ***** to close  modal view - (from Recording LIs)t *****
     /// changes when results view (***API  *** ends with completion handler) display
     @Binding var showResults: Bool
 
     var body: some View {
-        VStack {
+        
+//        VStack (spacing: 55){
+        VStack (spacing: 55){
+            
             if isLoading {
-                /// ***** ADD ANOTHER VSTACK? ***8 OVERLAPPING!
-                Text("Analyzing Audio")
+                
+                VStack (spacing: 50) {
+                    Spacer()
+                    Button("Dismiss Analysis") {
+                        self.showResults = false
+                    }
+                    .foregroundColor(.gray)
+                    .multilineTextAlignment(.center)
+                }
+               
+                 Text("Analyzing Audio")
+                    .foregroundColor(.gray)
+                    .font(.title)
+                    .fontWeight(.bold)
                     .padding()
+ 
                 Spacer()
                 Spacer()
+ 
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle(tint: .orange))
                     .scaleEffect(7)
                 Spacer()
                 Spacer()
+                
             } else {
+                
                 Button("Dismiss Results") {
+                    
                     self.showResults = false
                 }
+                .foregroundColor(.gray)
             }
             /// initializing  BirdResultsView with the audio url file
             BirdResultsView(audioURL: self.$audioURL, loading: self.$isLoading)

@@ -30,7 +30,8 @@ class Api: ObservableObject {
         // here it's finished uploading but because of setup I don't have an indicator of when it's analyzing and it's finished uploading
         // so hard coding time to a minute to wait for it because don't have indicator
         /// **** HOW CAN I ADD AN INDICATOR? ****
-        configuration.timeoutIntervalForRequest = 180;
+        // change interval - increase
+        configuration.timeoutIntervalForRequest = 500;
         
         /// Alamofire instance
         sessionManager = Alamofire.Session(configuration: configuration, startRequestsImmediately: true);
