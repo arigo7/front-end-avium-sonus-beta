@@ -40,7 +40,6 @@ struct BirdResultsView: View {
                     .padding()
             }
             
-            ///
         } else {
             
             Text("Bird Results")
@@ -66,7 +65,7 @@ struct BirdResultsView: View {
                 .font(.title3)
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 .padding()
-        }
+        } /// Hstack end
         } /// end of else if
 
             /// moved so it doesn't show all the time but it shows until loading

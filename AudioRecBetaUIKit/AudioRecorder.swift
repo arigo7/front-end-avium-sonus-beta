@@ -3,13 +3,9 @@
 //  AudioRecBetaUIKit
 //
 //  Created by Ari on 8/5/21.
-//
-
 
 
 // AudioRecorder to record, end, and save audios
-
-
 
 import Foundation
 import SwiftUI
@@ -22,31 +18,31 @@ import AVFoundation
 
 class AudioRecorder: NSObject, ObservableObject {
     
-    // fetchRecordings function should be called every time a new recording is completed.
-    // also when the app and therefore also the AudioRecorder is launched for the first time.
-    // we overwrite the init function of the AudioRecorder accordingly. To make this work,
-    // our AudioRecorder must adopt the NSObject protocol (above)
+    /// fetchRecordings() function should be called every time a new recording is completed, also when the app and ( therefore )the AudioRecorder is launched for the first time.
+    /// we overwrite the init function of the AudioRecorder accordingly
+    /// For this,  AudioRecorder must adopt the NSObject protocol (above)
     override init() {
         super.init()
         fetchRecordings()
     }
     
-    //To notify observing views about changes, for example when the recording is
-    //started, we need a PassthroughObject.
+    ///To notify observing views about changes, for example when the recording is started, we need a PassthroughObject.
+    
     /// PasthrougSubject  => broadcasts elements to downstream subscribers
+    
     let objectWillChange = PassthroughSubject<AudioRecorder, Never>()
     
-    // initialize an AVAudioRecorder instance with AudioRecorder - will help start
-    // recording sessions later
+    /// initialize an AVAudioRecorder instance with AudioRecorder - will help start recording sessions later
+    
     var audioRecorder: AVAudioRecorder!
     
-    // after creating RecordingDataModel, create array to hold the recordings.
+    /// after creating RecordingDataModel, create array to hold the recordings
+    
     var recordings = [Recording]()
     
-    // AudioRecorder should pay attention if it's alrady recording. If variable
-    ///recording
-    // changes  (i.e when recording is finished), we update subscribing views using
+    /// AudioRecorder should pay attention if it's alrady recording. If variable recording changes  (i.e when recording is finished), we update subscribing views using
     /// objectWillChange property
+    
     var recording = false {
         didSet {
             objectWillChange.send(self)
@@ -56,9 +52,9 @@ class AudioRecorder: NSObject, ObservableObject {
     /// AudioRecorder Class Functions
     /// ------------------------------------------------------------------------
     
-    // Implements function to start audio recording when user taps on the record button. We call this function startRecording.
+    /// Implements function to start audio recording when user taps on the record button. We call this function startRecording.
     func startRecording() {
-        // creates a recording session
+        /// creates a recording session
         let recordingSession = AVAudioSession.sharedInstance()
         
         do {
@@ -68,21 +64,21 @@ class AudioRecorder: NSObject, ObservableObject {
             print("Failed to set up recording session")
         }
         
-        //specifies location where recording should be saved
+        /// specifies location where recording should be saved
         let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         
-        // file is named after the date and time of the recording and has .m4a format
-        // Could change the name to something
+        /// file is named after the date and time of the recording and has .m4a format
+        /// *** Could change the name to something *** like birdsound1, birdsound2, etc
         let audioFilename = documentPath.appendingPathComponent("\(Date().toString(dateFormat: "dd-MM-YY_'at'_HH:mm:ss")).m4a")
 
-        // define settings for our recording
+        /// define settings for our recording
         let settings = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
             AVSampleRateKey: 12000,
             AVNumberOfChannelsKey: 1,
             AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
         ]
-        //star recording with our audioRecorder property! Then we inform our ContentView that the recording is running so that it can update itself and display the stop button instead of the start button.
+        /// start recording with our audioRecorder property! Then we inform our ContentView ( RecordingsView) that the recording is running so that it can update itself and display the stop button instead of the start button.
         do {
             audioRecorder = try AVAudioRecorder(url: audioFilename, settings: settings)
             audioRecorder.record()
@@ -91,39 +87,36 @@ class AudioRecorder: NSObject, ObservableObject {
         } catch {
             print("Oops, couldn't start recording")
         }
-    } // end of startRecording function declaration
+    } /// end of startRecording function declaration
     
-    // implement function to end the recording which stops recording session of our AudioRecorder and informs all observing views about this by setting the recording variable to false again.
+    /// implement function to end the recording - stops recording session of our AudioRecorder and informs all observing views about this by setting the recording variable to false again.
     func stopRecording() {
         audioRecorder.stop()
         recording = false
         
-        
-        
-        //fetchRecordings function should be called every time a new recording is completed
+        /// fetchRecordings function should be called every time a new recording is completed
         fetchRecordings()
         
-    } //end of stopRecording function
+    } ///end of stopRecording function
     
-    //implement a function called fetchRecordings to access the stored recordings
+    /// implement a function called fetchRecordings to access the stored recordings
     func fetchRecordings() {
         
-        //Every time we fetch recordings we have to empty our recordings array before, this avoids recordings being displayed multiple times.
+        /// Every time we fetch recordings we have to empty our recordings array before, this avoids recordings being displayed multiple times.
         recordings.removeAll()
         
-        //Then we access the documents folder where the audio files are located and cycle through all of them
+        /// Then we access the documents folder where the audio files are located and cycle through all of them
         let fileManager = FileManager.default
         let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let directoryContents = try! fileManager.contentsOfDirectory(at: documentDirectory, includingPropertiesForKeys: nil)
         for audio in directoryContents {
-            // uses getCreationDate function created for the respective audio recording. We then create one Recording instance
-            // per audio file and add it to our recordings array.
+            /// uses getCreationDate function created for the respective audio recording. We then create one Recording instance per audio file and add it to our recordings array.
             let recording = Recording(fileURL: audio, createdAt: getCreationDate(for: audio))
             recordings.append(recording)
             
         }
-        // sort the recordings array by the creation date of its items and
-        // eventually update all observing views, especially RecordingsList
+        
+        /// sort the recordings array by the creation date of its items and eventually update all observing views, especially RecordingsList
         recordings.sort(by: { $0.createdAt.compare($1.createdAt) == .orderedAscending})
         
         objectWillChange.send(self)
@@ -144,20 +137,16 @@ class AudioRecorder: NSObject, ObservableObject {
         
         fetchRecordings()
         
-    } // end deleteRecording func
-    
-    // sends recording to BirdNET a sound file  and navigates to results
-    
+    } /// end deleteRecording func
+} // end of class declaration?
+
+/// sends recording to BirdNET a sound file  and navigates to results
+
 //    func sendAudio() {
 //        let fileManager = FileManager.default
 //        let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
 //        let directoryContents = try! fileManager.contentsOfDirectory(at: documentDirectory, includingPropertiesForKeys: nil)
-//        // Last recorded audio file
+/// Last recorded audio file
 //        let file = directoryContents[0]
-//        
-//        
 //    }
-//    
-    
-    
-} // end of class declaration?
+

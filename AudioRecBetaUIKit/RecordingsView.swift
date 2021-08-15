@@ -6,12 +6,12 @@
 //
 // ContentView.swift - by default SwiftUi declare ContentView and ContentView_Previws
 
-/// Example of hat an audio file path  /Users/ada/Developer/projects/capstone/feAviumSonusBeta/AudioRecBetaUIKit/AudioRecBetaUIKit/com.arigo.AudioRecBetaUIKit 2021-08-06 00:21.45.xcappdata/AppData/Documents/06-08-21_at_00:06:06.m4a
+/// audio file path name example: /Users/ada/Developer/projects/capstone/feAviumSonusBeta/AudioRecBetaUIKit/AudioRecBetaUIKit/com.arigo.AudioRecBetaUIKit 2021-08-06 00:21.45.xcappdata/AppData/Documents/06-08-21_at_00:06:06.m4a
 
 import SwiftUI
 import CoreLocation
 
-/// Content view will need to access an AudioRecorder instance - need to declare ObsevedObject on AudioRecorder
+/// ContentView (RecordingsView) will need to access an AudioRecorder instance - need to declare ObsevedObject on AudioRecorder
 
 struct RecordingsView: View {
     
@@ -19,7 +19,7 @@ struct RecordingsView: View {
     @ObservedObject var audioRecorder: AudioRecorder
     var body: some View {
         
-        /// ContentView embeded in a NavigationView and provide it with a navigation bar.
+        /// RecordingsView (ContentView) embeded in a NavigationView and provide it with a navigation bar.
         NavigationView{
             
             VStack {
@@ -32,6 +32,7 @@ struct RecordingsView: View {
                 if audioRecorder.recording == false {
                     
                     /// Recording button a pink circle!
+                    /// **** MAKE PRETTY IF TIME ALLOWS ***
                     Button(action: {self.audioRecorder.startRecording()}) {
                         Image(systemName: "circle.fill")
                             .resizable()
@@ -59,13 +60,12 @@ struct RecordingsView: View {
                 
             }
             .navigationBarTitle("Bird Sound Recorder")
-            // to allow user to delete each recording, add default edit button  the navigation bar of ContentView
-            // button enables the user to select individual RecordingRows from the RecordingList to delete. To do this, the Edit button expects us to implement a delete function. We have to add this function to our RecordingsList.
+            /// to allow user to delete each recording, add default edit button  the navigation bar of ContentView (RecordingsView)
+            /// button enables  user to select individual RecordingRows from the RecordingList to delete. To do this, the Edit button expects us to implement a delete function. We have to add this function to our RecordingsList.
             .navigationBarItems(trailing: EditButton())
-//            .navigationBarItems(trailing: )   //// Here I have to implement button to select item and send it over!
+//             //// Here I have to implement button to select item and send it over!
             
         } // end of navigationView 
-        
     }
 }
 
