@@ -20,7 +20,7 @@ struct ModalView2: View {
     var body: some View {
         
 //        VStack (spacing: 55){
-        VStack (spacing: 55){
+        VStack (spacing: 5){
             
             if isLoading {
                 

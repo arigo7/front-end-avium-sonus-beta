@@ -33,14 +33,14 @@ struct BirdResultsView: View {
                     .padding()
                     
         //            I cannot recognize that sound with certainty!
-                Text("Can't recognize that bird sound")
+                Text("Can't recognize that bird sound with certainty")
                     .foregroundColor(.pink)
                     .font(.title2)
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .padding()
             }
             
-//            I cannot recognize that sound with certainty!
+            ///
         } else {
             
             Text("Bird Results")
@@ -67,10 +67,8 @@ struct BirdResultsView: View {
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 .padding()
         }
-        }
-//        if birds  {
+        } /// end of else if
 
-//        } else {
             /// moved so it doesn't show all the time but it shows until loading
           
         
@@ -80,6 +78,7 @@ struct BirdResultsView: View {
         
         List(birds) {
             bird in
+            
             VStack(alignment: .center) {
                
                 Text("\(bird.commonName)")
