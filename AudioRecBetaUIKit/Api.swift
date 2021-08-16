@@ -18,6 +18,7 @@ class Api: ObservableObject {
     
     /// @Published before a property - will update any SwiftUI views that are watching for changes (lets swift know to watch for changes of this variable)
     @Published var birds = [Bird]();
+    // timeout default is is less than I need
     var sessionManager: Alamofire.Session?;
     var latitude: CLLocationDegrees?
     var longitude: CLLocationDegrees?
@@ -74,7 +75,7 @@ class Api: ObservableObject {
     
     
     /// POST method with  embeded audio file
-
+    /// upload data takes in an audio file and a function (completion @ escaping - won't do garbage collection to the function)  -
     func uploadData(audioFile: URL, completion:@escaping ([Bird]) -> ()) {
             
             // To get lat, lon with SwiftLocation
@@ -88,7 +89,7 @@ class Api: ObservableObject {
                 // putting results into my Bird model
                 struct HTTPBinResponse: Decodable {let results: [Bird]}
                 
-                // audio file
+                // audio file -- read file
                 let data: Data? = try? Data(contentsOf: audioFile)
                 
                 // passing on lat / lon through headers to B-end
@@ -98,21 +99,20 @@ class Api: ObservableObject {
                 headers.add(HTTPHeader(name: "latitude", value: "\(self.latitude!)"))
                 headers.add(HTTPHeader(name: "longitude", value: "\(self.longitude!)"))
                 
-                // api call
+                // api call - upload with AF
                 (self.sessionManager)!.upload(data!, to: "http://127.0.0.1:5000/bird_stream", headers: headers).responseJSON {
                     response in
                     debugPrint(response)
+                    /// data otherwise if  is  null - return
                     guard let data = response.data else { return }
                     
                     /// if this birds is empty display
                     let birds = try! JSONDecoder().decode([Bird].self, from: data)
                     
-                    /// Reload the  view using the main dispatch queue
+                    ///  Reload the  view using the main dispatch queue - (DispatchQueue concluye la llamada asincrona de completion(birds)  which happens in birdResults when calls the callback (completion(birds))
                     DispatchQueue.main.async {
                         completion(birds)
- 
-                    // else the no results found on screen, on the catch I can use 400 response
-                    }
+                } /// DispatchQueue end - manages the execution of tasks serially or concurrently on the main thread or on a background thread
                 }
             }
         }

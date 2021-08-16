@@ -12,7 +12,6 @@ import SwiftUI
 struct BirdResultsView: View {
     @State var birds = [Bird]()
     @Binding var audioURL: URL
-    
     /// variable for loading modal progress view
     /// referencia modalView loading
     @Binding var loading: Bool
@@ -25,55 +24,54 @@ struct BirdResultsView: View {
         // I cannot recognize that sound with certainty!
         if  !loading && birds.count == 0 {
             
-            VStack {
+            VStack (alignment: .center, spacing: 40){
+                Spacer()
                 Text("SORRY!")
                     .foregroundColor(.pink)
                     .font(.title)
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .padding()
-                    
+                
+                Spacer()
         //            I cannot recognize that sound with certainty!
-                Text("Can't recognize that bird sound with certainty")
+                Text("Can't recognize the sound as a bird with certainty")
                     .foregroundColor(.pink)
                     .font(.title2)
+                    .fontWeight(.bold)
+                    .padding()
+                    .multilineTextAlignment(.center)
+                    .font(.system(size: 30))
+            }
+        } else {
+            if !loading {
+                
+                Text("Bird Results")
+                    .foregroundColor(.pink)
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .padding()
+            
+            /// INSERT HSTACK HERE w/ interval, bird , confidence for title~~~!***** FIX THIS ****
+            HStack(alignment: .center) {
+                Text("Interval")
+                    .foregroundColor(.pink)
+                    .font(.title3)
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .padding()
+                Text("Bird Name")
+                    .foregroundColor(.pink)
+                    .font(.title3)
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    .padding()
+                Text("Certainty")
+                    .foregroundColor(.pink)
+                    .font(.title3)
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    .padding()
+            } /// Hstack end
             }
-            
-        } else {
-            
-            Text("Bird Results")
-                .foregroundColor(.pink)
-                .font(.title)
-                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                .padding()
-        
-        /// INSERT HSTACK HERE w/ interval, bird , confidence for title~~~!***** FIX THIS ****
-        HStack(alignment: .center) {
-            Text("Interval")
-                .foregroundColor(.pink)
-                .font(.title3)
-                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                .padding()
-            Text("Bird Name")
-                .foregroundColor(.pink)
-                .font(.title3)
-                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                .padding()
-            Text("Certainty")
-                .foregroundColor(.pink)
-                .font(.title3)
-                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                .padding()
-        } /// Hstack end
         } /// end of else if
-
             /// moved so it doesn't show all the time but it shows until loading
-          
-        
-            /// ********** SOO NEED need to implement *********
-            /// if list is empty, show someting, else show '
-            /// this :
         
         List(birds) {
             bird in
@@ -84,7 +82,6 @@ struct BirdResultsView: View {
                     .font(.title3)
                     .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                     .padding(.bottom)
-                    
                 
                 HStack{
                     Text("\(bird.beginTimeSec) -")
@@ -92,12 +89,10 @@ struct BirdResultsView: View {
                     Text("\(bird.endTimeSec) sec")
                         .foregroundColor(.pink)
                         Spacer()
-                    
 //                    Text("\((Float(bird.confidence))!*100) %" as String)
 //                        .foregroundColor(.orange)
 //                        .font(.body)
 //                        .fontWeight(.bold)
-                    
                     Text("\(Int(bird.confidence*100)) %" as String)
                         .foregroundColor(.orange)
                         .font(.body)
@@ -117,20 +112,18 @@ struct BirdResultsView: View {
                     
                     debugPrint(self.birds)
                     self.loading = false
-                }
-//
-            } ///  ***try taking this off here - WHERE IS IT PRINTING>??? ***
+                } /// **** end of completion api callback ****
+            } /// **** onAppear end ***
             .navigationTitle("Bird List") ///  ***try taking this off here***
-//        } /// end conditional
     } /// end  body
 } /// end BirdResultsView
 ///
 ///
 ///   *********structure (preview for view above!) -- giving me an error!    *********
-
+///  *** make audio url an observable object? ***
 //struct BirdResultsView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        BirdResultsView()
+//        BirdResultsView(self.birds, $audioURL, self.loading)
 //    }
 //}
 ///

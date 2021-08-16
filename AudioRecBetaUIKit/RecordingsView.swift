@@ -55,17 +55,21 @@ struct RecordingsView: View {
                             .clipped()
                             .foregroundColor(.yellow)
                             .padding(.bottom, 40)
+//                            .border(Color.gray, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
                     }
                 }
                 
             }
             .navigationBarTitle("Bird Sound Recorder")
+            
             /// to allow user to delete each recording, add default edit button  the navigation bar of ContentView (RecordingsView)
             /// button enables  user to select individual RecordingRows from the RecordingList to delete. To do this, the Edit button expects us to implement a delete function. We have to add this function to our RecordingsList.
             .navigationBarItems(trailing: EditButton())
 //             //// Here I have to implement button to select item and send it over!
             
-        } // end of navigationView 
+        } // end of navigationView
+        .accentColor(.pink)  // edit button
+        
     }
 }
 

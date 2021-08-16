@@ -9,18 +9,18 @@
 import SwiftUI
 struct ModalView2: View {
     
-    /// ****** loading ball! - true because when it opens I want it there ******
+    /// ****** loading ball! - true - when it opens I want it there ******
     @State var isLoading: Bool = true
     @State var audioURL: URL
     
-    /// ***** to close  modal view - (from Recording LIs)t *****
-    /// changes when results view (***API  *** ends with completion handler) display
+    /// ***** to close  modal view - (from Recording LIst)*****
+    /// changes when ResultsView (**API ** ends with completion handler) display
     @Binding var showResults: Bool
 
     var body: some View {
         
 //        VStack (spacing: 55){
-        VStack (spacing: 5){
+        VStack (spacing: 10){
             
             if isLoading {
                 
@@ -32,6 +32,7 @@ struct ModalView2: View {
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
                 }
+                
                
                  Text("Analyzing Audio")
                     .foregroundColor(.gray)
@@ -43,8 +44,9 @@ struct ModalView2: View {
                 Spacer()
  
                 ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle(tint: .orange))
+                    .progressViewStyle(CircularProgressViewStyle(tint: .yellow))
                     .scaleEffect(7)
+                    .padding(150)
                 Spacer()
                 Spacer()
                 

@@ -15,16 +15,30 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AviumSonusImage-1" translatesAutoresizingMaskIntoConstraints="NO" id="zmM-nI-rwW">
+                                <rect key="frame" x="1" y="242" width="412" height="412"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="412" id="GEL-Q9-uRF"/>
+                                    <constraint firstAttribute="height" constant="412" id="cwc-mv-IIJ"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="zmM-nI-rwW" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Ydi-pd-pZy"/>
+                            <constraint firstItem="zmM-nI-rwW" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="oa3-8R-2TK"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.173913043478265" y="375"/>
         </scene>
     </scenes>
     <resources>
+        <image name="AviumSonusImage-1" width="341" height="341"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
