@@ -61,6 +61,7 @@ struct RecordingRow: View {
                         }) {
                             Image(systemName: "sparkles")
                                 .imageScale(.large)
+                                .foregroundColor(.orange)
                         }
                         .buttonStyle(PlainButtonStyle())
                         ///*******
@@ -74,7 +75,6 @@ struct RecordingRow: View {
             Spacer()
             
             /// If audioPlayer not playing, display  play button to allow user to listen to  recording
-            
             if audioPlayer.isPlaying == false {
                 Button(action: {
                     /// call the two functions (startPlayback(audio) and stopPlayback()) from RecordingRow’s start and stop buttons
@@ -82,11 +82,12 @@ struct RecordingRow: View {
                 }) {
                     Image(systemName: "play.circle")
                         .imageScale(.large)
+                        .foregroundColor(.pink)
                 }
                 /// condition with play/sparkles buttons!
                 .buttonStyle(PlainButtonStyle())
                 
-                /// Else, If  audio is currently playing,  display a button to stop  playback
+            /// Else, If  audio is currently playing,  display a button to stop  playback
             } else {
                 Button(action: {
                     /// "stop playing audio
@@ -94,6 +95,7 @@ struct RecordingRow: View {
                 }) {
                     Image(systemName: "stop.fill")
                         .imageScale(.large)
+                        .foregroundColor(.gray)
                 }
                 /// avoids raise condition with play/sparkles buttons!
                 .buttonStyle(PlainButtonStyle())

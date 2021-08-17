@@ -4,7 +4,6 @@
 //
 //  Created by Ari on 8/7/21.
 //
-/// ----------- Working on this ! -------------------------------------------------------------
 
 import SwiftUI
 struct ModalView2: View {
@@ -32,8 +31,6 @@ struct ModalView2: View {
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
                 }
-                
-               
                  Text("Analyzing Audio")
                     .foregroundColor(.gray)
                     .font(.title)
@@ -68,31 +65,24 @@ struct ModalView2: View {
 //-------------------------------------------------------
 
 /// HOW IT WAS SO IT DOESN'T GIVE ME ERRORS
-
-// struct ModalView: View {
-//@Binding var presentedAsModal: Bool
-//var body: some View {
 //
-////  check file updates - every whatever time
+//struct ModalView: View {
+//    @Binding var presentedAsModal: Bool
+//    var body: some View {
 //
-//    Button("dismiss") { self.presentedAsModal = false }
+//        //  check file updates - every whatever time
+//
+//        Button("dismiss") { self.presentedAsModal = false }
+//    }
 //}
-
 
 ///  ******  FIX ERRORS IN   -  Preview  ******
 /// -----------------------------------------------------
 //
 ////
 
-//struct ModalView2_Previews: PreviewProvider {
-//
-//    static var previews: some View {
-//        ModalView2(audioURL: self.audioURL, showResults: self.$presentingModal)
-//
-//
-//    }
-//}
-//
+//.preferredColorScheme(.dark)
+
 
 ///  ******  BACK UP  - starts here ****** --------------------------------------------------------------------------------
 //import SwiftUI

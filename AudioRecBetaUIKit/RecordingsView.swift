@@ -11,27 +11,20 @@
 import SwiftUI
 import CoreLocation
 
-/// ContentView (RecordingsView) will need to access an AudioRecorder instance - need to declare ObsevedObject on AudioRecorder
+///  RecordingsView will need to access an AudioRecorder instance - need to declare ObsevedObject on AudioRecorder
 
 struct RecordingsView: View {
-    
     /// declaring audioRecorder as ObservedObject
     @ObservedObject var audioRecorder: AudioRecorder
     var body: some View {
-        
         /// RecordingsView (ContentView) embeded in a NavigationView and provide it with a navigation bar.
+        
         NavigationView{
-            
             VStack {
-                
-                /// Inserting RecordingsList into ContentView above the start/stop button => using an
-                /// AudioRecorder instance of the ContentView as the RecordingsList‘s audioRecorder.
+                /// Inserting RecordingList into RecordingsView above  record/stop button => using an AudioRecorder instance of the ContentView as the RecordingsList‘s audioRecorder.
                 RecordingList(audioRecorder: audioRecorder)
-                
                 /// when audioRecorder not recording presents a button to start recording
                 if audioRecorder.recording == false {
-                    
-                    /// Recording button a pink circle!
                     /// **** MAKE PRETTY IF TIME ALLOWS ***
                     Button(action: {self.audioRecorder.startRecording()}) {
                         Image(systemName: "circle.fill")
@@ -40,13 +33,13 @@ struct RecordingsView: View {
                             //can add alignment:center here, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/ too
                             .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
                             .clipped()
+                            /// Recording button a pink circle!
                             .foregroundColor(.pink)
-                            .padding(.bottom, 40)
-                    }
+                            .padding(10) /// top and bottom
+//                            .padding(.bottom, 40) /// bottom only
+                    } /// end button formatting for start recording
                 /// if audioRecorder is not recording - button to stop recording
                 } else {
-                    
-                    
                     Button(action: {self.audioRecorder.stopRecording()}) {
                         Image(systemName: "stop.fill")
                             .resizable()
@@ -54,28 +47,37 @@ struct RecordingsView: View {
                             .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
                             .clipped()
                             .foregroundColor(.yellow)
-                            .padding(.bottom, 40)
+                            .padding(10)
+//                            .padding(.bottom, 40)
 //                            .border(Color.gray, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
-                    }
-                }
-                
-            }
-            .navigationBarTitle("Bird Sound Recorder")
+                    } /// end of button formatting for stop recording
+                } /// end conditional
+            } /// end Vstack
+            .navigationTitle("Bird Sound Recorder")
+//            .navigationBarTitle("Bird Sound Recorder")
+//            .accentColor(Color("AccentColor"))
+            /// changes recordings color
+//            .foregroundColor(.gray)
             
-            /// to allow user to delete each recording, add default edit button  the navigation bar of ContentView (RecordingsView)
-            /// button enables  user to select individual RecordingRows from the RecordingList to delete. To do this, the Edit button expects us to implement a delete function. We have to add this function to our RecordingsList.
+            /// Add default edit button on  navigation bar  -  allows user to delete each recording. Edit button enables  user to select individual RecordingRows from  RecordingList and delete. For this, edit button expects implementation of a delete function. We have to add this function to our RecordingsList.
             .navigationBarItems(trailing: EditButton())
-//             //// Here I have to implement button to select item and send it over!
-            
-        } // end of navigationView
-        .accentColor(.pink)  // edit button
+ 
+        } /// NavigationView end
         
-    }
-}
+        .accentColor(.pink)  // edit button
+    } /// body end
+} /// RecordingsView end
+
 
 struct RecordingsView_Previews: PreviewProvider {
+    /// *** Aug-16 ***
+    @ObservedObject var audioRecorder: AudioRecorder
     static var previews: some View {
         /// initializing and Audio recorder instance on previous struct, as well as for the scene function on our scenedelegate.swift ContentView
         RecordingsView(audioRecorder: AudioRecorder())
+            .preferredColorScheme(.dark)
+//            .preferredColorScheme(.light)
+
+            
     }
 }
