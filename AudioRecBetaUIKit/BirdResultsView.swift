@@ -15,12 +15,13 @@ struct BirdResultsView: View {
     /// variable for loading modal progress view
     /// referencia modalView loading
     @Binding var loading: Bool
-
+    
     /// for alamofire to not garbage collect API
     /// Storing api instance in view
     let api = Api()
     
     var body: some View {
+        
         // I cannot recognize that sound with certainty!
         if  !loading && birds.count == 0 {
             
@@ -33,7 +34,7 @@ struct BirdResultsView: View {
                     .padding()
                 
                 Spacer()
-        //            I cannot recognize that sound with certainty!
+                //            I cannot recognize that sound with certainty!
                 Text("Can't recognize the sound as a bird with certainty")
                     .foregroundColor(.pink)
                     .font(.title2)
@@ -44,77 +45,106 @@ struct BirdResultsView: View {
             }
         } else {
             if !loading {
+                // OPTION 1
+                                Text(" Results ")
+                                    .foregroundColor(.pink)
+                                    .font(.title)
+                                    .fontWeight(.bold)
+                                    .padding()
                 
-                Text("Bird Results")
-                    .foregroundColor(.pink)
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .padding()
-            
-            /// INSERT HSTACK HERE w/ interval, bird , confidence for title~~~!***** FIX THIS ****
-            HStack(alignment: .center) {
-                Text("Interval")
-                    .foregroundColor(.pink)
-                    .font(.title3)
-                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                    .padding()
-                Text("Bird Name")
-                    .foregroundColor(.pink)
-                    .font(.title3)
-                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                    .padding()
-                Text("Certainty")
-                    .foregroundColor(.pink)
-                    .font(.title3)
-                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                    .padding()
-            } /// Hstack end
+                /// OPTION 2
+//                HStack {
+//                    Image("AviumSonusImage-1").resizable()
+//                        .scaledToFit()
+//                        .frame(width: 100, height: 100, alignment: .leading)
+//                    Text(" Results ")
+//                        .foregroundColor(.pink)
+//                        .font(.title)
+//                        .fontWeight(.bold)
+//                        .padding()
+//                }
+//
+                
+                /// INSERT HSTACK HERE w/ interval, bird , confidence for title~~~!***** FIX THIS ****
+                HStack(alignment: .center) {
+                    Text("Interval")
+                        .foregroundColor(.pink)
+                        .font(.title3)
+                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                        .padding()
+                    Text("Bird Name")
+                        .foregroundColor(.pink)
+                        .font(.title3)
+                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                        .padding()
+                    Text("Certainty")
+                        .foregroundColor(.pink)
+                        .font(.title3)
+                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                        .padding()
+                } /// Hstack end
             }
         } /// end of else if
-            /// moved so it doesn't show all the time but it shows until loading
-        
-        List(birds) {
-            bird in
-            
-            VStack(alignment: .center) {
-               
-                Text("\(bird.commonName)")
-                    .font(.title3)
-                    .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-                    .padding(.bottom)
+        /// moved so it doesn't show all the time but it shows until loading
+        ZStack {
+            List(birds) {
+                        bird in
                 
-                HStack{
-                    Text("\(bird.beginTimeSec) -")
-                        .foregroundColor(.pink)
-                    Text("\(bird.endTimeSec) sec")
-                        .foregroundColor(.pink)
+                        VStack(alignment: .center) {
+//                            Text("\(bird.commonName)")
+//                        .font(.title3)
+//                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+//                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+//                        .padding(.bottom)
+//                            var trimmedBirdName = (bird.commonName).trimmingCharacters(in: .whitespaces)
+//                            var trimmedBirdName = (bird.commonName).trimmingCharacters(in: .whitespaces)
+                            let freedSpaceString = (bird.commonName).filter {!$0.isWhitespace}
+                            
+//                            var birdSearchName = ("\(bird.commonName)").trimmingCharacters(in: .whitespacesAndNewLines)
+                            Link("\(bird.commonName)", destination: URL(string: "https://www.google.com/search?q=\(freedSpaceString)")!)
+                                .font(.title3)
+                                .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                                .padding(.bottom)
+                            
+                      HStack{
+                        Text("\(bird.beginTimeSec) -")
+                            .foregroundColor(.pink)
+                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                        Text("\(bird.endTimeSec) sec")
+                            .foregroundColor(.pink)
+                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                         Spacer()
-//                    Text("\((Float(bird.confidence))!*100) %" as String)
-//                        .foregroundColor(.orange)
-//                        .font(.body)
-//                        .fontWeight(.bold)
-                    Text("\(Int(bird.confidence*100)) %" as String)
-                        .foregroundColor(.orange)
-                        .font(.body)
-                        .fontWeight(.bold)
-                    
-                } ///   Hstack end
-                Spacer()
-            } ///  Vstack end
+                        //                    Text("\((Float(bird.confidence))!*100) %" as String)
+                        //                        .foregroundColor(.orange)
+                        //                        .font(.body)
+                        //                        .fontWeight(.bold)
+                        Text("\(Int(bird.confidence*100)) %" as String)
+                            .foregroundColor(.orange)
+                            .font(.body)
+                            .fontWeight(.bold)
+                    } ///   Hstack end
+                    Spacer()
+                } ///  Vstack end
+                Image("AviumSonusImage-1")
+                    .resizable()
+                    .scaledToFit()
+                    .edgesIgnoringSafeArea(.all)
+                    .opacity(0.7)
+            } // List(birds) end
             
-         } // List(birds) end
-            .onAppear() {
-                /// passing url all the way to upload data which is called when the modal appears which builds a birds result view
-                api.uploadData(audioFile: audioURL) {
-                    /// this executes, once  api call is complete
-                    /// BUILDING BIRD MODEL TO DISPLAY
-                    (birds) in self.birds = birds
-                    
-                    debugPrint(self.birds)
-                    self.loading = false
-                } /// **** end of completion api callback ****
-            } /// **** onAppear end ***
-            .navigationTitle("Bird List") ///  ***try taking this off here***
+        } /// zstack end
+        .onAppear() {
+            /// passing url all the way to upload data which is called when the modal appears which builds a birds result view
+            api.uploadData(audioFile: audioURL) {
+                /// this executes, once  api call is complete
+                /// BUILDING BIRD MODEL TO DISPLAY
+                (birds) in self.birds = birds
+                
+                debugPrint(self.birds)
+                self.loading = false
+            } /// **** end of completion api callback ****
+        } /// **** onAppear end ***
+        .navigationTitle("Bird List") ///  ***try taking this off here***
     } /// end  body
 } /// end BirdResultsView
 ///

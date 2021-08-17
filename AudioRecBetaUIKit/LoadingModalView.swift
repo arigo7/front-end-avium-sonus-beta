@@ -23,7 +23,7 @@ struct ModalView2: View {
             
             if isLoading {
                 
-                VStack (spacing: 50) {
+                VStack (spacing: 10) {
                     Spacer()
                     Button("Dismiss Analysis") {
                         self.showResults = false
@@ -36,10 +36,14 @@ struct ModalView2: View {
                     .font(.title)
                     .fontWeight(.bold)
                     .padding()
+                Text("with BirdNET ")
+                    .foregroundColor(.gray)
+                    .font(.title3)
+                    .fontWeight(.bold)
  
                 Spacer()
                 Spacer()
- 
+                
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle(tint: .yellow))
                     .scaleEffect(7)
@@ -48,12 +52,21 @@ struct ModalView2: View {
                 Spacer()
                 
             } else {
-                
-                Button("Dismiss Results") {
+//                VStack (spacing: 10){
+                VStack {
+                    Button("Dismiss Results") {
+                        
+                        self.showResults = false
+                    }
+                    .foregroundColor(.gray)
+                    .padding(.top, 10)
                     
-                    self.showResults = false
                 }
-                .foregroundColor(.gray)
+//                Button("Dismiss Results") {
+//
+//                    self.showResults = false
+//                }
+//                .foregroundColor(.gray)
             }
             /// initializing  BirdResultsView with the audio url file
             BirdResultsView(audioURL: self.$audioURL, loading: self.$isLoading)

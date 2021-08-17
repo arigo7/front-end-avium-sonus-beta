@@ -36,9 +36,9 @@ struct RecordingsView: View {
                             /// Recording button a pink circle!
                             .foregroundColor(.pink)
                             .padding(10) /// top and bottom
-//                            .padding(.bottom, 40) /// bottom only
+                        //                            .padding(.bottom, 40) /// bottom only
                     } /// end button formatting for start recording
-                /// if audioRecorder is not recording - button to stop recording
+                    /// if audioRecorder is not recording - button to stop recording
                 } else {
                     Button(action: {self.audioRecorder.stopRecording()}) {
                         Image(systemName: "stop.fill")
@@ -48,20 +48,20 @@ struct RecordingsView: View {
                             .clipped()
                             .foregroundColor(.yellow)
                             .padding(10)
-//                            .padding(.bottom, 40)
-//                            .border(Color.gray, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
+                        //                            .padding(.bottom, 40)
+                        //                            .border(Color.gray, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
                     } /// end of button formatting for stop recording
                 } /// end conditional
             } /// end Vstack
             .navigationTitle("Bird Sound Recorder")
-//            .navigationBarTitle("Bird Sound Recorder")
-//            .accentColor(Color("AccentColor"))
+            //            .navigationBarTitle("Bird Sound Recorder")
+            //            .accentColor(Color("AccentColor"))
             /// changes recordings color
-//            .foregroundColor(.gray)
+            //            .foregroundColor(.gray)
             
             /// Add default edit button on  navigation bar  -  allows user to delete each recording. Edit button enables  user to select individual RecordingRows from  RecordingList and delete. For this, edit button expects implementation of a delete function. We have to add this function to our RecordingsList.
             .navigationBarItems(trailing: EditButton())
- 
+            
         } /// NavigationView end
         
         .accentColor(.pink)  // edit button
@@ -75,9 +75,9 @@ struct RecordingsView_Previews: PreviewProvider {
     static var previews: some View {
         /// initializing and Audio recorder instance on previous struct, as well as for the scene function on our scenedelegate.swift ContentView
         RecordingsView(audioRecorder: AudioRecorder())
-            .preferredColorScheme(.dark)
-//            .preferredColorScheme(.light)
-
-            
+        //            .preferredColorScheme(.dark)
+        //            .preferredColorScheme(.light)
+        
+        
     }
 }
