@@ -12,19 +12,14 @@ import SwiftUI
 struct BirdResultsView: View {
     @State var birds = [Bird]()
     @Binding var audioURL: URL
-    /// variable for loading modal progress view
-    /// referencia modalView loading
+    /// variable for loading modal progress view - referencia modalView loading
     @Binding var loading: Bool
-    
-    /// for alamofire to not garbage collect API
-    /// Storing api instance in view
+    /// for alamofire to not garbage collect API - Storing api instance in view
     let api = Api()
-    
     var body: some View {
-        
-        // I cannot recognize that sound with certainty!
+        /// I cannot recognize that sound with certainty!
         if  !loading && birds.count == 0 {
-            
+
             VStack (alignment: .center, spacing: 40){
                 Spacer()
                 Text("SORRY!")
@@ -32,40 +27,41 @@ struct BirdResultsView: View {
                     .font(.title)
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .padding()
-                
                 Spacer()
-                //            I cannot recognize that sound with certainty!
+                /// *** INSERT 404 IMAGE with this! ***- I cannot recognize that sound with certainty!
                 Text("Can't recognize the sound as a bird with certainty")
+                Text("BirdNET can't recognize that sound with certainty")
                     .foregroundColor(.pink)
                     .font(.title2)
                     .fontWeight(.bold)
                     .padding()
                     .multilineTextAlignment(.center)
                     .font(.system(size: 30))
-            }
+            } /// SORRY - Vstack end
         } else {
             if !loading {
-                // OPTION 1
+                /// OPTION 1
                                 Text(" Results ")
                                     .foregroundColor(.pink)
                                     .font(.title)
                                     .fontWeight(.bold)
-                                    .padding()
-                
+//                                    .padding()
                 /// OPTION 2
 //                HStack {
-//                    Image("AviumSonusImage-1").resizable()
+//                    Image("AviumSonusBirdResults").resizable()
 //                        .scaledToFit()
 //                        .frame(width: 100, height: 100, alignment: .leading)
+                /// maybe add this to image .resizable()
+                     ///.scaledToFit().edgesIgnoringSafeArea(.all).opacity(0.9)
+                
 //                    Text(" Results ")
 //                        .foregroundColor(.pink)
 //                        .font(.title)
 //                        .fontWeight(.bold)
 //                        .padding()
-//                }
-//
+//                } /// *** Hstack end ***
                 
-                /// INSERT HSTACK HERE w/ interval, bird , confidence for title~~~!***** FIX THIS ****
+                /// HSTACK interval, bird , confidence for title~~~!***** FIX THIS ****
                 HStack(alignment: .center) {
                     Text("Interval")
                         .foregroundColor(.pink)
@@ -82,30 +78,27 @@ struct BirdResultsView: View {
                         .font(.title3)
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                         .padding()
-                } /// Hstack end
-            }
+                } /// *** Hstack end ***
+            } /// if loading - end
         } /// end of else if
         /// moved so it doesn't show all the time but it shows until loading
         ZStack {
             List(birds) {
                         bird in
-                
                         VStack(alignment: .center) {
 //                            Text("\(bird.commonName)")
 //                        .font(.title3)
 //                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
 //                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
 //                        .padding(.bottom)
-//                            var trimmedBirdName = (bird.commonName).trimmingCharacters(in: .whitespaces)
-//                            var trimmedBirdName = (bird.commonName).trimmingCharacters(in: .whitespaces)
+//                          /// to remove spaces from commonName JSON
                             let freedSpaceString = (bird.commonName).filter {!$0.isWhitespace}
                             
-//                            var birdSearchName = ("\(bird.commonName)").trimmingCharacters(in: .whitespacesAndNewLines)
+                           /// Bird name links to search with image
                             Link("\(bird.commonName)", destination: URL(string: "https://www.google.com/search?q=\(freedSpaceString)")!)
                                 .font(.title3)
                                 .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                                 .padding(.bottom)
-                            
                       HStack{
                         Text("\(bird.beginTimeSec) -")
                             .foregroundColor(.pink)
@@ -123,23 +116,21 @@ struct BirdResultsView: View {
                             .font(.body)
                             .fontWeight(.bold)
                     } ///   Hstack end
+                      .hoverEffect(.lift) /// *** doesn't work *** fix
                     Spacer()
                 } ///  Vstack end
-                Image("AviumSonusImage-1")
+                Image("AviumSonusBirdResults")
                     .resizable()
                     .scaledToFit()
                     .edgesIgnoringSafeArea(.all)
-                    .opacity(0.7)
-            } // List(birds) end
-            
+                    .opacity(0.9)
+            } /// List(birds) end
         } /// zstack end
         .onAppear() {
             /// passing url all the way to upload data which is called when the modal appears which builds a birds result view
             api.uploadData(audioFile: audioURL) {
-                /// this executes, once  api call is complete
-                /// BUILDING BIRD MODEL TO DISPLAY
+                /// this executes, once  api call is complete - BUILDING BIRD MODEL TO DISPLAY
                 (birds) in self.birds = birds
-                
                 debugPrint(self.birds)
                 self.loading = false
             } /// **** end of completion api callback ****
@@ -147,7 +138,6 @@ struct BirdResultsView: View {
         .navigationTitle("Bird List") ///  ***try taking this off here***
     } /// end  body
 } /// end BirdResultsView
-///
 ///
 ///   *********structure (preview for view above!) -- giving me an error!    *********
 ///  *** make audio url an observable object? ***

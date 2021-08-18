@@ -53,6 +53,9 @@ struct RecordingsView: View {
                     } /// end of button formatting for stop recording
                 } /// end conditional
             } /// end Vstack
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color(#colorLiteral(red: 0.1176470588, green: 0.6823529412, blue: 0.5960784314, alpha: 1)))
+            .opacity(0.85)
             .navigationTitle("Bird Sound Recorder")
             //            .navigationBarTitle("Bird Sound Recorder")
             //            .accentColor(Color("AccentColor"))
@@ -63,9 +66,9 @@ struct RecordingsView: View {
             .navigationBarItems(trailing: EditButton())
             
         } /// NavigationView end
-        
         .accentColor(.pink)  // edit button
     } /// body end
+    
 } /// RecordingsView end
 
 

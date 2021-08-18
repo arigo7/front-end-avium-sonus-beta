@@ -10,12 +10,11 @@
 import SwiftUI
 
 struct RecordingList: View {
-    
     //ObservedObject for the RecordingsList for the AudioRecorder (dependency)
     @ObservedObject var audioRecorder: AudioRecorder
-    
     var body: some View {
         // Adding one RecordingView for each object in the recordings array of the audioRecorder.
+//        Color(#colorLiteral(red: 0.1176470588, green: 0.6823529412, blue: 0.5960784314, alpha: 1))
         List {
             ForEach(audioRecorder.recordings, id: \.createdAt) { recording in
                 RecordingRow(audioURL: recording.fileURL)
@@ -73,7 +72,6 @@ struct RecordingRow: View {
             /// Each row assigned their particular audio file's path. Within the HStack: file without extension  (Text object) pushed left with Spacer()'s help.
             Text("\(audioURL.lastPathComponent)")
             Spacer()
-            
             /// If audioPlayer not playing, display  play button to allow user to listen to  recording
             if audioPlayer.isPlaying == false {
                 Button(action: {
@@ -101,8 +99,9 @@ struct RecordingRow: View {
                 .buttonStyle(PlainButtonStyle())
             } /// end conditional statement
         } // end of Hstack
-        
-        
+//        .background(Color.yellow.opacity(0.5))
+        .background(Color(#colorLiteral(red: 0.1176470588, green: 0.6823529412, blue: 0.5960784314, alpha: 1)).opacity(0.75))
+
     } // end body
 } // RecordingRow
 
