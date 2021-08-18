@@ -51,7 +51,6 @@ class AudioRecorder: NSObject, ObservableObject {
     
     /// AudioRecorder Class Functions
     /// ------------------------------------------------------------------------
-    
     /// Implements function to start audio recording when user taps on the record button. We call this function startRecording.
     func startRecording() {
         /// creates a recording session
@@ -70,7 +69,7 @@ class AudioRecorder: NSObject, ObservableObject {
         /// file is named after the date and time of the recording and has .m4a format
         /// *** Could change the name to something *** like birdsound1, birdsound2, etc
         let audioFilename = documentPath.appendingPathComponent("\(Date().toString(dateFormat: "dd-MM-YY_'at'_HH:mm:ss")).m4a")
-
+        
         /// define settings for our recording
         let settings = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
@@ -93,18 +92,14 @@ class AudioRecorder: NSObject, ObservableObject {
     func stopRecording() {
         audioRecorder.stop()
         recording = false
-        
         /// fetchRecordings function should be called every time a new recording is completed
         fetchRecordings()
-        
     } ///end of stopRecording function
     
     /// implement a function called fetchRecordings to access the stored recordings
     func fetchRecordings() {
-        
         /// Every time we fetch recordings we have to empty our recordings array before, this avoids recordings being displayed multiple times.
         recordings.removeAll()
-        
         /// Then we access the documents folder where the audio files are located and cycle through all of them
         let fileManager = FileManager.default
         let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -113,14 +108,12 @@ class AudioRecorder: NSObject, ObservableObject {
             /// uses getCreationDate function created for the respective audio recording. We then create one Recording instance per audio file and add it to our recordings array.
             let recording = Recording(fileURL: audio, createdAt: getCreationDate(for: audio))
             recordings.append(recording)
-            
         }
         
         /// sort the recordings array by the creation date of its items and eventually update all observing views, especially RecordingsList
         recordings.sort(by: { $0.createdAt.compare($1.createdAt) == .orderedAscending})
-        
+        /// *** OBJECT WILL CHANGE ***
         objectWillChange.send(self)
-        
     } // end fetchRecordings func
     
     func deleteRecording(urlsToDelete: [URL]) {
@@ -136,17 +129,5 @@ class AudioRecorder: NSObject, ObservableObject {
         }// end of for loop
         
         fetchRecordings()
-        
     } /// end deleteRecording func
 } // end of class declaration?
-
-/// sends recording to BirdNET a sound file  and navigates to results
-
-//    func sendAudio() {
-//        let fileManager = FileManager.default
-//        let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-//        let directoryContents = try! fileManager.contentsOfDirectory(at: documentDirectory, includingPropertiesForKeys: nil)
-/// Last recorded audio file
-//        let file = directoryContents[0]
-//    }
-

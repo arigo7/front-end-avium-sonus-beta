@@ -18,62 +18,59 @@ struct BirdResultsView: View {
     let api = Api()
     var body: some View {
         /// I cannot recognize that sound with certainty!
-//        if  !loading && birds.count == 0 {
+        //        if  !loading && birds.count == 0 {
         if  !loading && birds.count == 0 {
-//            VStack (alignment: .center, spacing: 5){
+            //            VStack (alignment: .center, spacing: 5){
             VStack (alignment: .center, spacing: 15){
-//                Spacer()
-                Text("SORRY!")
+                Spacer()
+                Text("Oops!")
                     .foregroundColor(.black)
                     .font(.title)
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .padding()
-//                Spacer()
-
+                //                Spacer()
+                
                 Text("BirdNET can't recognize the sound")
                     .foregroundColor(.black)
                     .font(.title3)
-                    .fontWeight(.bold)
                     .multilineTextAlignment(.center)
                     .font(.system(size: 30))
-//                    .padding(.bottom, 10)
                     .padding()
-//                Spacer(minLength: 10)
                 Spacer()
-                Spacer()
-                /// *** INSERT 404 IMAGE with this! ***- Cannot recognize sound with certainty
-                Image("ConfusedBird")
-                    .resizable()
-                    .frame(width: 250, height: 250, alignment: .center)
-                    .padding(.bottom, 30)
                 Spacer()
                 Spacer()
                 
+                /// *** 404  Results - IMAGE  ***- Cannot recognize sound with certainty
+                Image("SorryResults4")
+                    .resizable()
+                    .frame(width: 275, height: 275, alignment: .center)
+                Spacer(minLength: 10)
             } /// SORRY results- Vstack end
-            .background(Color(#colorLiteral(red: 0.1176470588, green: 0.6823529412, blue: 0.5960784314, alpha: 1))).opacity(0.7)
+            .frame(minWidth: 410, idealWidth: 415, maxWidth: .infinity, minHeight: 600, idealHeight: 600, maxHeight: .infinity, alignment: .center)
+            .background(Color(#colorLiteral(red: 0.121771539, green: 0.9858927693, blue: 0.7137254902, alpha: 0.4240931024))).opacity(0.9)
         } else {
             if !loading {
-                /// OPTION 1
-                                Text(" Results ")
-                                    .foregroundColor(.black)
-                                    .font(.title)
-                                    .fontWeight(.bold)
-//                                    .padding()
+                
+                Text(" Results ")
+                    .foregroundColor(.black)
+                    .font(.title)
+                    .fontWeight(.bold)
+                
             } /// if loading - end
         } /// end of else if
         /// shows until loaded
         ZStack {
             List(birds) {
-                        bird in
-                        VStack(alignment: .center) {
-//                          /// to remove spaces from commonName JSON
-                            let freedSpaceString = (bird.commonName).filter {!$0.isWhitespace}
-                           /// Bird name links to search with image
-                            Link("\(bird.commonName)", destination: URL(string: "https://www.google.com/search?q=\(freedSpaceString)")!)
-                                .font(.title3)
-                                .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-                                .padding(.bottom)
-                      HStack{
+                bird in
+                VStack(alignment: .center) {
+                    //                          /// to remove spaces from commonName JSON
+                    let freedSpaceString = (bird.commonName).filter {!$0.isWhitespace}
+                    /// Bird name links to search with image
+                    Link("\(bird.commonName)", destination: URL(string: "https://www.google.com/search?q=\(freedSpaceString)")!)
+                        .font(.title3)
+                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                        .padding(.bottom)
+                    HStack{
                         Text("\(bird.beginTimeSec) -")
                             .foregroundColor(.pink)
                             .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
@@ -81,12 +78,12 @@ struct BirdResultsView: View {
                             .foregroundColor(.pink)
                             .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                         Spacer()
-                      Text("\(Int(bird.confidence*100)) %" as String)
+                        Text("\(Int(bird.confidence*100)) %" as String)
                             .foregroundColor(.orange)
                             .font(.body)
                             .fontWeight(.bold)
                     } ///   Hstack end
-                      .hoverEffect(.lift) /// *** doesn't work *** fix
+                    .hoverEffect(.lift) /// *** doesn't work *** fix
                     Spacer()
                 } ///  Vstack end
                 Image("AviumSonusBirdResults")

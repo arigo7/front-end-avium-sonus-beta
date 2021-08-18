@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		287BD3A0E619B1861E2F1984 /* Pods_AudioRecBetaUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70A1F2D61FD7C36444A37430 /* Pods_AudioRecBetaUIKit.framework */; };
+		603BAEE526CD8DD70070E69C /* SorryResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603BAEE426CD8DD70070E69C /* SorryResults.swift */; };
 		607AE28A26BDBC9D00DB37EA /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607AE28926BDBC9D00DB37EA /* AudioPlayer.swift */; };
 		607EE4BB26BCB6EC0041930B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607EE4BA26BCB6EC0041930B /* AppDelegate.swift */; };
 		607EE4BD26BCB6EC0041930B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607EE4BC26BCB6EC0041930B /* SceneDelegate.swift */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		4EFED052C31F62A065254225 /* Pods-AudioRecBetaUIKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioRecBetaUIKit.release.xcconfig"; path = "Target Support Files/Pods-AudioRecBetaUIKit/Pods-AudioRecBetaUIKit.release.xcconfig"; sourceTree = "<group>"; };
 		5B835353FECD18BFF3BDA6AD /* Pods-AudioRecBetaUIKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioRecBetaUIKit.debug.xcconfig"; path = "Target Support Files/Pods-AudioRecBetaUIKit/Pods-AudioRecBetaUIKit.debug.xcconfig"; sourceTree = "<group>"; };
+		603BAEE426CD8DD70070E69C /* SorryResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SorryResults.swift; sourceTree = "<group>"; };
 		607AE28926BDBC9D00DB37EA /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		607EE4B726BCB6EC0041930B /* AudioRecBetaUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioRecBetaUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607EE4BA26BCB6EC0041930B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 		607EE4AE26BCB6EC0041930B = {
 			isa = PBXGroup;
 			children = (
+				603BAEE426CD8DD70070E69C /* SorryResults.swift */,
 				607EE4B926BCB6EC0041930B /* AudioRecBetaUIKit */,
 				607EE4B826BCB6EC0041930B /* Products */,
 				76CDA70807F231443FD4302F /* Pods */,
@@ -253,6 +256,7 @@
 				607F5AED26BF21E00072AF97 /* Api.swift in Sources */,
 				607EE4BD26BCB6EC0041930B /* SceneDelegate.swift in Sources */,
 				607F5AEB26BF20890072AF97 /* Birds.swift in Sources */,
+				603BAEE526CD8DD70070E69C /* SorryResults.swift in Sources */,
 				607EE4CF26BCB7FD0041930B /* AudioRecorder.swift in Sources */,
 				607EE4BF26BCB6EC0041930B /* RecordingsView.swift in Sources */,
 				607EE4D726BD222D0041930B /* Helper.swift in Sources */,

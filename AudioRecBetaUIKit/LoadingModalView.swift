@@ -48,9 +48,15 @@ struct ModalView2: View {
                 Spacer()
                 /// Image waves, bird NO PREVIEW ;(
                 ZStack {
-                    Image("AvSonWaves").padding([.leading, .bottom], 20.0).frame(width: 100/*@END_MENU_TOKEN@*/, height: 100/*@END_MENU_TOKEN@*/, alignment: .bottomLeading).opacity(0.6)
+                    Image("AvSonWaves")
+                        .padding([.leading, .bottom], 20.0)
+                        .frame(width: 100/*@END_MENU_TOKEN@*/, height: 100/*@END_MENU_TOKEN@*/, alignment: .bottomLeading)
+                        .opacity(0.6)
                     Spacer()
-                    Image("AviumSonusBird").padding([.top, .leading]).frame(alignment: .topTrailing).opacity(0.8)
+                    Image("AviumSonusBird")
+                        .padding([.top, .leading])
+                        .frame(alignment: .topTrailing)
+                        .opacity(0.8)
                 
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle(tint: .gray))
@@ -72,11 +78,6 @@ struct ModalView2: View {
                     .font(Font.footnote.weight(.bold))
                     
                 }
-//                Button("Dismiss Results") {
-//
-//                    self.showResults = false
-//                }
-//                .foregroundColor(.gray)
             }
             /// initializing  BirdResultsView with the audio url file
             BirdResultsView(audioURL: self.$audioURL, loading: self.$isLoading)

@@ -5,7 +5,6 @@
 //  Created by Ari on 8/6/21.
 //
 /// AudioPlayer structure  is very similar to the AudioRecorder structure
-
 /// We implement the functions for playing and stopping the audio in our AudioPlayer, which we will call from the buttons of the RecordingRows.
 
 import Foundation
@@ -13,9 +12,7 @@ import SwiftUI
 import Combine
 import AVFoundation
 
-
 /// Implemented playback function and sound plays on speakers. To make stop button stop displaying although an audio was played to the end, update isPlaying variable accordingly
-
 /// implement audioDidFinishPlaying function - which notifies when an audio has finished playing (part of the AVAudioPlayerDelegate protocol) Hint: To adapt this delegate protocol, the AudioRecorder must also adapt the NSObject protocol.
 class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
     
@@ -65,7 +62,8 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
     } /// end of stopPlayback
     
     /// audioDidFinishPlaying function to AudioPlayer, if audio successfully plays, we set the playing properties value back to false
-    /// When app runs now and play a recording, AudioPlayer calls the audioDidFinishPlaying function as its own delegate after the audio has been finished playing. This causes the playing attribute to be false again, which will eventually cause the particular RecordingRow to update itself and display the play button again.
+    /// When app runs now and play a recording, AudioPlayer calls the audioDidFinishPlaying function as its own delegate after the audio has been finished playing.
+    /// This causes the playing attribute to be false again, which will eventually cause the particular RecordingRow to update itself and display the play button again.
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         if flag {
             isPlaying = false

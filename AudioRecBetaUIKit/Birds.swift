@@ -19,7 +19,6 @@ struct Bird: Codable, Identifiable {
     var highFreqHz: String
     var speciesCode: String
     var commonName: String
-//    var confidence: String
     var confidence: Double
     var rank: String
 }
