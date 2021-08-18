@@ -28,28 +28,37 @@ struct ModalView2: View {
                     Button("Dismiss Analysis") {
                         self.showResults = false
                     }
-                    .foregroundColor(.gray)
+                    .foregroundColor(.pink)
                     .multilineTextAlignment(.center)
+                    .padding(.bottom, 10)
+                    .font(Font.footnote.weight(.bold))
+                    
                 }
                  Text("Analyzing Audio")
-                    .foregroundColor(.gray)
+                    .foregroundColor(.black)
                     .font(.title)
                     .fontWeight(.bold)
-                    .padding()
+//                    .padding()
                 Text("with BirdNET ")
-                    .foregroundColor(.gray)
+                    .foregroundColor(.black)
                     .font(.title3)
-                    .fontWeight(.bold)
- 
+//                    .fontWeight(.bold)
+                
                 Spacer()
                 Spacer()
+                /// Image waves, bird NO PREVIEW ;(
+                ZStack {
+                    Image("AvSonWaves").padding([.leading, .bottom], 20.0).frame(width: 100/*@END_MENU_TOKEN@*/, height: 100/*@END_MENU_TOKEN@*/, alignment: .bottomLeading).opacity(0.6)
+                    Spacer()
+                    Image("AviumSonusBird").padding([.top, .leading]).frame(alignment: .topTrailing).opacity(0.8)
                 
                 ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle(tint: .yellow))
-                    .scaleEffect(7)
+                    .progressViewStyle(CircularProgressViewStyle(tint: .gray))
+                    .scaleEffect(15)
                     .padding(150)
                 Spacer()
                 Spacer()
+                }
                 
             } else {
 //                VStack (spacing: 10){
@@ -74,6 +83,22 @@ struct ModalView2: View {
 
     } /// end body
 } // end ModalView
+
+
+/// -----------------------------------------------------
+//
+////
+
+//struct ModalView2_Previews: PreviewProvider {
+//
+//    static var previews: some View {
+//        ModalView2(audioURL: self.audioURL, showResults: self.$presentingModal)
+//
+//
+//    }
+//}
+//
+
 
 //-------------------------------------------------------
 
