@@ -57,20 +57,15 @@ struct RecordingsView: View {
             .background(Color(#colorLiteral(red: 0.1176470588, green: 0.6823529412, blue: 0.5960784314, alpha: 1)))
             .opacity(0.85)
             .navigationTitle("Bird Sound Recorder")
-            //            .navigationBarTitle("Bird Sound Recorder")
-            //            .accentColor(Color("AccentColor"))
             /// changes recordings color
             //            .foregroundColor(.gray)
             
             /// Add default edit button on  navigation bar  -  allows user to delete each recording. Edit button enables  user to select individual RecordingRows from  RecordingList and delete. For this, edit button expects implementation of a delete function. We have to add this function to our RecordingsList.
             .navigationBarItems(trailing: EditButton())
-            
         } /// NavigationView end
         .accentColor(.pink)  // edit button
     } /// body end
-    
 } /// RecordingsView end
-
 
 struct RecordingsView_Previews: PreviewProvider {
     /// *** Aug-16 ***
